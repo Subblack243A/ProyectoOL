@@ -1,0 +1,35 @@
+﻿
+@model ProyectoOL.Models.UserModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dashboard</h2>
+
+@if (Model.Id_Usuario != 0)
+{
+    <div class="text-bg-info">
+        @Html.DisplayFor(model => model.Message)
+    </div>
+
+    if (Model.Tipo_Usuario == 1)
+    {
+        <h3>Bienvenido Admin</h3>
+        <br />
+        <h4>@Html.DisplayFor(model => model.Nombre)</h4>
+    }
+
+    if (Model.Tipo_Usuario == 2)
+    {
+        <h3>Bienvenido Usuario</h3>
+        <br />
+        <h4>@Html.DisplayFor(model => model.Nombre)</h4>
+    }
+}
+else
+{
+    <div class="text-bg-danger">
+        @Html.DisplayFor(model => model.Message)
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@model ProyectoOL.Models.UserModel
+
+@{
+    ViewBag.Title = "InicioSesion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inicio de Sesión</h2>
+
+<div>
+    <h4>UserModel</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+            @Html.AntiForgeryToken();
+            <div class="form-horizontal">
+                <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nombre_Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nombre_Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nombre_Usuario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Contrasena, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Iniciar Sesión" class="btn border-bottom" />
+                    </div>
+                </div>
+            </div>
+     }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
