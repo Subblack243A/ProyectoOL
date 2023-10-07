@@ -17,5 +17,13 @@
         public string Correo_Electronico { get; set; } = string.Empty;
 
         public string Contrasena { get; set; } = string.Empty;
+
+        public string Message {  get; set; } = string.Empty;
     }
+
+    /*public class InicioSesionModel
+    {
+        public string Usuario { get; set; }
+        public string Contrasena { get; set; }
+    }*/
 }

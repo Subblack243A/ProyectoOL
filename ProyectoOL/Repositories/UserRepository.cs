@@ -7,9 +7,9 @@ namespace ProyectoOL.Repositories
 {
     public class UserRepository
     {
-        public bool CreateUser(UserModel user) 
+        public int CreateUser(UserModel user) 
         {
-            bool result = false;
+            int comando = 0;
             DBContextUtility Connection = new DBContextUtility();
             Connection.Connect();
             //consulta SQL
@@ -19,19 +19,34 @@ namespace ProyectoOL.Repositories
 
             using (SqlCommand command = new SqlCommand(SQL, Connection.CONN()))
             {
-                int comando = command.ExecuteNonQuery();
-                
-                if (comando == 1) 
+                comando = command.ExecuteNonQuery();
+            }
+            Connection.Disconnect();
+            return comando;
+        }
+
+        public UserModel Login(UserModel user)
+        {
+            UserModel userResult = new UserModel();
+
+            //Consulta SQL
+            string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM TEST.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"'AND CONTRASENA = '" + user.Contrasena+"';";
+            DBContextUtility Connection = new DBContextUtility();
+            Connection.Connect();
+            using(SqlCommand command = new SqlCommand(SQL,Connection.CONN()))
+            {
+                using(SqlDataReader reader = command.ExecuteReader())
                 {
-                    result = true;
-                }
-                else
-                {
-                    result = false;
+                    if(reader.Read())
+                    {
+                        userResult.Contrasena = reader.GetString(0);
+                        userResult.Correo_Electronico = reader.GetString(1);
+
+                    }
                 }
             }
             Connection.Disconnect();
-            return result;
+            return userResult;
         }
     }
 }

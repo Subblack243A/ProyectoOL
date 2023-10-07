@@ -1,15 +1,12 @@
 ﻿using ProyectoOL.Models;
 using ProyectoOL.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
     public class UserController : Controller
     {
+        UserModel userLogin = new UserModel();
         // GET: Usuario
         public ActionResult Index()
         {
@@ -17,7 +14,7 @@ namespace ProyectoOL.Controllers
         }
 
         //GET: Register
-        public ActionResult Register()
+        public ActionResult Registro()
         {
             UserModel user = new UserModel();
             return View(user);
@@ -25,7 +22,7 @@ namespace ProyectoOL.Controllers
 
         //POST: Register
         [HttpPost]
-        public ActionResult Register(UserModel user)
+        public ActionResult Registro(UserModel user)
         {
             UserService userService = new UserService();
             bool result = userService.CreateUser(user);
@@ -33,10 +30,25 @@ namespace ProyectoOL.Controllers
             {
                 return View("Index");
             }
-            else 
+            else
             {
-            return View();
+                return View();
             }
+        }
+
+        //GET:LOGIN
+        public ActionResult InicioSesion()
+        {
+            UserModel user = new UserModel();
+            return View(user);
+        }
+        //POST login
+        [HttpPost]
+        public ActionResult InicioSesion(UserModel usuario)
+        {
+            UserService usuarioService = new UserService();
+            userLogin = usuarioService.InicioSesion(usuario);
+            return View("Dashboard", userLogin);
         }
     }
 }
