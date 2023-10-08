@@ -1,0 +1,44 @@
+﻿.menu {
+    height: 5rem;
+    align-items: center;
+    background-color: #29282D;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.logo {
+    font-family: Josefin Sans, italic;
+    font-weight: 800;
+    font-size: 3rem;
+    text-decoration: none;
+    color: #F0ECE9;
+}
+
+.menu_login {
+    display: flex;
+}
+
+.menu_login_item {
+    text-decoration: none;
+    color: #F0ECE9;
+    list-style: none;
+    font-family: Josefin Sans, italic;
+    margin-right: 4rem;
+    font-weight: 600;
+}
+
+    .menu_login_item:hover {
+        color: #6768AB;
+    }
+
+.btn {
+    background-color: #6768AB;
+    padding: 0.5rem 0.8rem;
+    border-radius: 7px;
+}
+
+    .btn:hover {
+        background-color: #F0ECE9;
+    }

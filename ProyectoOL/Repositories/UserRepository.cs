@@ -30,7 +30,7 @@ namespace ProyectoOL.Repositories
             UserModel userResult = new UserModel();
 
             //Consulta SQL
-            string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"'AND CONTRASENA = '" + user.Contrasena+"';";
+            string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"' AND CONTRASENA = '" + user.Contrasena+"';";
             DBContextUtility Connection = new DBContextUtility();
             Connection.Connect();
             using(SqlCommand command = new SqlCommand(SQL,Connection.CONN()))
@@ -39,9 +39,8 @@ namespace ProyectoOL.Repositories
                 {
                     if(reader.Read())
                     {
-                        userResult.Contrasena = reader.GetString(0);
-                        userResult.Correo_Electronico = reader.GetString(1);
-
+                        userResult.Contrasena = reader.GetString(1);
+                        userResult.Nombre_Usuario = reader.GetString(0);
                     }
                 }
             }

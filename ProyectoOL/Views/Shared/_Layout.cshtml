@@ -5,37 +5,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;600&family=Josefin+Sans:ital,wght@0,300;1,100;1,400&display=swap" rel="stylesheet">
+    <link href="~/Content/Reset.css" rel="stylesheet">
+    <link href="~/Content/HeaderStyle.css" rel="stylesheet">
+    <link href="~/Content/FooterStyle.css" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
 </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black">
-                <div class="container">
-                    @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("Registrarse", "Register", "User", new { area = "" }, new { @class = "nav-link btn-light" })</li>
-                            <li>@Html.ActionLink("Inicio de Sesion", "InicioSesion", "User", new { area = "" }, new { @class = "nav-link btn-light" })</li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-            </footer>
-        </div>
+<body>
+    <header class="menu">
+        @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
+        <nav>
+            <ul class="menu_login" type="none">
+                <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Biblioteca Digital", "Library", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Registrarse", "Register", "User", new { area = "" }, new { @class = "menu_login_item btn" })</li>
+                <li>@Html.ActionLink("Inicio de Sesion", "InicioSesion", "User", new { area = "" }, new { @class = "menu_login_item btn" })</li>
+            </ul>
+        </nav>
+    </header>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
+    <div class="c">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer class="foot_container">
+        <div class="foot_contact">
+            <p>Encuentranos en:</p>
+        </div>
+        <div class="copy">
+            <p>Copyright© 2023</p>
+        </div>
+        <div>
+            @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
 </html>
