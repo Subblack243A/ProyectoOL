@@ -1,10 +1,6 @@
 ﻿using ProyectoOL.Models;
 using ProyectoOL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls;
+
 
 namespace ProyectoOL.Services
 {
@@ -13,7 +9,31 @@ namespace ProyectoOL.Services
         public bool CreateUser(UserModel user)
         {
             UserRepository userRepository = new UserRepository();
-            return userRepository.CreateUser(user);
+            int result = userRepository.CreateUser(user);
+
+            if(result == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public UserModel InicioSesion(UserModel userModel)
+        {
+            UserRepository userRepository = new UserRepository();
+            UserModel userResponse = userRepository.Login(userModel);
+            if(userResponse.Id_Usuario != 0) 
+            {
+                userResponse.Message = "Successful Login";
+            }
+            else
+            {
+                userResponse.Message = "Error Inicio de Sesion, Usuario o Contraseña Incorrecctos";
+            }
+            return userResponse;
         }
     }
 }

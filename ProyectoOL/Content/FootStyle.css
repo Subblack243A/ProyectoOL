@@ -1,0 +1,26 @@
+﻿.foot_container {
+    align-items: center;
+    background-color: #7C6460;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    height: 6rem;
+}
+
+.foot_contact {
+    font-family: Josefin Sans, italic;
+    font-weight: 600;
+    color: #F0ECE9;
+}
+
+.copy {
+    font-family: Josefin Sans, italic;
+    font-weight: 600;
+    color: #F0ECE9;
+    position: relative;
+    top: 50%;
+}
+
+.logo_twitter {
+    width: 100%;
+}
