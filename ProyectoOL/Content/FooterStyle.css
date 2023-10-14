@@ -1,11 +1,9 @@
 ﻿.foot_container {
-    height: 5rem;
     align-items: center;
     background-color: #7C6460;
     display: flex;
     justify-content: space-between;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 2rem;
 }
 
 .foot_contact {

@@ -135,12 +135,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\FooterStyle.css" />
+    <Content Include="Content\Index.css" />
     <Content Include="Content\Reset.css" />
     <Content Include="Content\HeaderStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\biblioteca.png" />
+    <Content Include="Images\facebook.svg" />
+    <Content Include="Images\twitter.svg" />
+    <Content Include="Images\instagram.svg" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -151,7 +156,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Images\biblioteca.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
