@@ -1,14 +1,17 @@
-﻿using ProyectoOL.Models;
+﻿using ProyectoOL.Dto;
 using ProyectoOL.Utilities;
 using System.Data.SqlClient;
+using ProyectoOL.Repositories.Models;
+using System.Linq;
 
 
 namespace ProyectoOL.Repositories
 {
     public class UserRepository
     {
-        public int CreateUser(UserModel user) 
+        public int CreateUser(UserDto user) 
         {
+            Encrypt enc = new Encrypt();
             int comando = 0;
             DBContextUtility Connection = new DBContextUtility();
             Connection.Connect();
@@ -25,12 +28,12 @@ namespace ProyectoOL.Repositories
             return comando;
         }
 
-        public UserModel Login(UserModel user)
+        public UserDto Login(UserDto user)
         {
-            UserModel userResult = new UserModel();
+            UserDto userResult = new UserDto();
 
             //Consulta SQL
-            string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"' AND CONTRASENA = '" + user.Contrasena+"';";
+            /*string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"' AND CONTRASENA = '" + user.Contrasena+"';";
             DBContextUtility Connection = new DBContextUtility();
             Connection.Connect();
             using(SqlCommand command = new SqlCommand(SQL,Connection.CONN()))
@@ -44,7 +47,29 @@ namespace ProyectoOL.Repositories
                     }
                 }
             }
-            Connection.Disconnect();
+            Connection.Disconnect();*/
+
+            var TUser = new USUARIO();
+            using (OLDBEntities1 db = new OLDBEntities1())
+            {
+                TUser = (from d in db.USUARIOs 
+                where d.NOMBRE_USUARIO == user.Nombre_Usuario && d.CONTRASENA == user.Contrasena
+                select d).FirstOrDefault();
+            }
+            if(TUser != null)
+            {
+                userResult.Id_Usuario = TUser.ID_USUARIO;
+                userResult.Tipo_Usuario = TUser.FK_TIPO_USUARIO;
+                userResult.Estado = TUser.FK_ESTADO;
+                userResult.Nombre = TUser.NOMBRE;
+                userResult.Apellido = TUser.APELLIDO;
+                userResult.Nombre_Usuario = TUser.NOMBRE_USUARIO;
+                userResult.Contrasena = TUser.CONTRASENA;
+                userResult.Correo_Electronico = TUser.CORREO_ELECTRONICO;
+                userResult.Tipo_Documento = TUser.FK_TIPO_DOCUMENTO;
+            }
+            
+
             return userResult;
         }
     }

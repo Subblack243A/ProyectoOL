@@ -1,6 +1,7 @@
-﻿namespace ProyectoOL.Models
+﻿
+namespace ProyectoOL.Dto
 {
-    public class UserModel
+    public class UserDto
     {
         public int Id_Usuario {  get; set; }
         
@@ -19,6 +20,8 @@
         public string Contrasena { get; set; } = string.Empty;
 
         public string Message {  get; set; } = string.Empty;
+
+        public int Estado { get; set; }
     }
 
     /*public class InicioSesionModel
