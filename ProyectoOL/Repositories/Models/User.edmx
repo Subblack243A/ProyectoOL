@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OLDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAT_LIBRO">
+          <Key>
+            <PropertyRef Name="ID_LIBRO" />
+          </Key>
+          <Property Name="ID_LIBRO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_LIBRO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AUTOR" Type="varchar" MaxLength="20" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="FK_GENERO" Type="smallint" Nullable="false" />
+          <Property Name="FK_ESTADO" Type="smallint" Nullable="false" />
+          <Property Name="PRECIO" Type="int" />
+          <Property Name="UBICACION" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="COMPRA">
+          <Key>
+            <PropertyRef Name="ID_COMPRA" />
+          </Key>
+          <Property Name="ID_COMPRA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_LIBRO" Type="int" Nullable="false" />
+          <Property Name="FK_USUARIO" Type="int" Nullable="false" />
+          <Property Name="FECHA_COMPRA" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MULTA">
+          <Key>
+            <PropertyRef Name="ID_MULTA" />
+          </Key>
+          <Property Name="ID_MULTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_PRESTAMO" Type="int" Nullable="false" />
+          <Property Name="FECHA_MULTA" Type="date" Nullable="false" />
+          <Property Name="VALOR_MULTA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRESTAMO">
+          <Key>
+            <PropertyRef Name="ID_PRESTAMO" />
+          </Key>
+          <Property Name="ID_PRESTAMO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_USUARIO" Type="int" Nullable="false" />
+          <Property Name="FK_LIBRO" Type="int" Nullable="false" />
+          <Property Name="FECHA_PRESTAMO" Type="date" Nullable="false" />
+          <Property Name="FECHA_ENTREGA" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FK_TIPO_DOCUMENTO" Type="smallint" Nullable="false" />
+          <Property Name="FK_TIPO_USUARIO" Type="smallint" Nullable="false" />
+          <Property Name="FK_ESTADO" Type="smallint" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="APELLIDO" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="CONTRASENA" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_COMPRA_CAT_LIBRO">
+          <End Role="CAT_LIBRO" Type="Self.CAT_LIBRO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="FK_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRA_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MULTA_PRESTAMO">
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="1" />
+          <End Role="MULTA" Type="Self.MULTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESTAMO">
+              <PropertyRef Name="ID_PRESTAMO" />
+            </Principal>
+            <Dependent Role="MULTA">
+              <PropertyRef Name="FK_PRESTAMO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESTAMO_CAT_LIBRO">
+          <End Role="CAT_LIBRO" Type="Self.CAT_LIBRO" Multiplicity="1" />
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="PRESTAMO">
+              <PropertyRef Name="FK_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESTAMO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PRESTAMO">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OLDBModelStoreContainer">
+          <EntitySet Name="CAT_LIBRO" EntityType="Self.CAT_LIBRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPRA" EntityType="Self.COMPRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MULTA" EntityType="Self.MULTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRESTAMO" EntityType="Self.PRESTAMO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COMPRA_CAT_LIBRO" Association="Self.FK_COMPRA_CAT_LIBRO">
+            <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
+            <End Role="COMPRA" EntitySet="COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRA_USUARIO" Association="Self.FK_COMPRA_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="COMPRA" EntitySet="COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MULTA_PRESTAMO" Association="Self.FK_MULTA_PRESTAMO">
+            <End Role="PRESTAMO" EntitySet="PRESTAMO" />
+            <End Role="MULTA" EntitySet="MULTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESTAMO_CAT_LIBRO" Association="Self.FK_PRESTAMO_CAT_LIBRO">
+            <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
+            <End Role="PRESTAMO" EntitySet="PRESTAMO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESTAMO_USUARIO" Association="Self.FK_PRESTAMO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PRESTAMO" EntitySet="PRESTAMO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OLDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAT_LIBRO">
+          <Key>
+            <PropertyRef Name="ID_LIBRO" />
+          </Key>
+          <Property Name="ID_LIBRO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_LIBRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AUTOR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_GENERO" Type="Int16" Nullable="false" />
+          <Property Name="FK_ESTADO" Type="Int16" Nullable="false" />
+          <Property Name="PRECIO" Type="Int32" />
+          <Property Name="UBICACION" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMPRAs" Relationship="Self.FK_COMPRA_CAT_LIBRO" FromRole="CAT_LIBRO" ToRole="COMPRA" />
+          <NavigationProperty Name="PRESTAMOes" Relationship="Self.FK_PRESTAMO_CAT_LIBRO" FromRole="CAT_LIBRO" ToRole="PRESTAMO" />
+        </EntityType>
+        <EntityType Name="COMPRA">
+          <Key>
+            <PropertyRef Name="ID_COMPRA" />
+          </Key>
+          <Property Name="ID_COMPRA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_LIBRO" Type="Int32" Nullable="false" />
+          <Property Name="FK_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_COMPRA" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CAT_LIBRO" Relationship="Self.FK_COMPRA_CAT_LIBRO" FromRole="COMPRA" ToRole="CAT_LIBRO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_COMPRA_USUARIO" FromRole="COMPRA" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="MULTA">
+          <Key>
+            <PropertyRef Name="ID_MULTA" />
+          </Key>
+          <Property Name="ID_MULTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_PRESTAMO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_MULTA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VALOR_MULTA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRESTAMO" Relationship="Self.FK_MULTA_PRESTAMO" FromRole="MULTA" ToRole="PRESTAMO" />
+        </EntityType>
+        <EntityType Name="PRESTAMO">
+          <Key>
+            <PropertyRef Name="ID_PRESTAMO" />
+          </Key>
+          <Property Name="ID_PRESTAMO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="FK_LIBRO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_PRESTAMO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHA_ENTREGA" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CAT_LIBRO" Relationship="Self.FK_PRESTAMO_CAT_LIBRO" FromRole="PRESTAMO" ToRole="CAT_LIBRO" />
+          <NavigationProperty Name="MULTAs" Relationship="Self.FK_MULTA_PRESTAMO" FromRole="PRESTAMO" ToRole="MULTA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_PRESTAMO_USUARIO" FromRole="PRESTAMO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_TIPO_DOCUMENTO" Type="Int16" Nullable="false" />
+          <Property Name="FK_TIPO_USUARIO" Type="Int16" Nullable="false" />
+          <Property Name="FK_ESTADO" Type="Int16" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COMPRAs" Relationship="Self.FK_COMPRA_USUARIO" FromRole="USUARIO" ToRole="COMPRA" />
+          <NavigationProperty Name="PRESTAMOes" Relationship="Self.FK_PRESTAMO_USUARIO" FromRole="USUARIO" ToRole="PRESTAMO" />
+        </EntityType>
+        <Association Name="FK_COMPRA_CAT_LIBRO">
+          <End Role="CAT_LIBRO" Type="Self.CAT_LIBRO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="FK_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESTAMO_CAT_LIBRO">
+          <End Role="CAT_LIBRO" Type="Self.CAT_LIBRO" Multiplicity="1" />
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="PRESTAMO">
+              <PropertyRef Name="FK_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRA_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MULTA_PRESTAMO">
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="1" />
+          <End Role="MULTA" Type="Self.MULTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESTAMO">
+              <PropertyRef Name="ID_PRESTAMO" />
+            </Principal>
+            <Dependent Role="MULTA">
+              <PropertyRef Name="FK_PRESTAMO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESTAMO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PRESTAMO">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OLDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAT_LIBRO" EntityType="Self.CAT_LIBRO" />
+          <EntitySet Name="COMPRAs" EntityType="Self.COMPRA" />
+          <EntitySet Name="MULTAs" EntityType="Self.MULTA" />
+          <EntitySet Name="PRESTAMOes" EntityType="Self.PRESTAMO" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_COMPRA_CAT_LIBRO" Association="Self.FK_COMPRA_CAT_LIBRO">
+            <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
+            <End Role="COMPRA" EntitySet="COMPRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESTAMO_CAT_LIBRO" Association="Self.FK_PRESTAMO_CAT_LIBRO">
+            <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
+            <End Role="PRESTAMO" EntitySet="PRESTAMOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRA_USUARIO" Association="Self.FK_COMPRA_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="COMPRA" EntitySet="COMPRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MULTA_PRESTAMO" Association="Self.FK_MULTA_PRESTAMO">
+            <End Role="PRESTAMO" EntitySet="PRESTAMOes" />
+            <End Role="MULTA" EntitySet="MULTAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESTAMO_USUARIO" Association="Self.FK_PRESTAMO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="PRESTAMO" EntitySet="PRESTAMOes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities">
+          <EntitySetMapping Name="CAT_LIBRO">
+            <EntityTypeMapping TypeName="OLDBModel.CAT_LIBRO">
+              <MappingFragment StoreEntitySet="CAT_LIBRO">
+                <ScalarProperty Name="ID_LIBRO" ColumnName="ID_LIBRO" />
+                <ScalarProperty Name="NOMBRE_LIBRO" ColumnName="NOMBRE_LIBRO" />
+                <ScalarProperty Name="AUTOR" ColumnName="AUTOR" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="FK_GENERO" ColumnName="FK_GENERO" />
+                <ScalarProperty Name="FK_ESTADO" ColumnName="FK_ESTADO" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="UBICACION" ColumnName="UBICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPRAs">
+            <EntityTypeMapping TypeName="OLDBModel.COMPRA">
+              <MappingFragment StoreEntitySet="COMPRA">
+                <ScalarProperty Name="ID_COMPRA" ColumnName="ID_COMPRA" />
+                <ScalarProperty Name="FK_LIBRO" ColumnName="FK_LIBRO" />
+                <ScalarProperty Name="FK_USUARIO" ColumnName="FK_USUARIO" />
+                <ScalarProperty Name="FECHA_COMPRA" ColumnName="FECHA_COMPRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MULTAs">
+            <EntityTypeMapping TypeName="OLDBModel.MULTA">
+              <MappingFragment StoreEntitySet="MULTA">
+                <ScalarProperty Name="ID_MULTA" ColumnName="ID_MULTA" />
+                <ScalarProperty Name="FK_PRESTAMO" ColumnName="FK_PRESTAMO" />
+                <ScalarProperty Name="FECHA_MULTA" ColumnName="FECHA_MULTA" />
+                <ScalarProperty Name="VALOR_MULTA" ColumnName="VALOR_MULTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRESTAMOes">
+            <EntityTypeMapping TypeName="OLDBModel.PRESTAMO">
+              <MappingFragment StoreEntitySet="PRESTAMO">
+                <ScalarProperty Name="ID_PRESTAMO" ColumnName="ID_PRESTAMO" />
+                <ScalarProperty Name="FK_USUARIO" ColumnName="FK_USUARIO" />
+                <ScalarProperty Name="FK_LIBRO" ColumnName="FK_LIBRO" />
+                <ScalarProperty Name="FECHA_PRESTAMO" ColumnName="FECHA_PRESTAMO" />
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="OLDBModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="FK_TIPO_DOCUMENTO" ColumnName="FK_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="FK_TIPO_USUARIO" ColumnName="FK_TIPO_USUARIO" />
+                <ScalarProperty Name="FK_ESTADO" ColumnName="FK_ESTADO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

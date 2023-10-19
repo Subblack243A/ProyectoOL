@@ -6,7 +6,7 @@ namespace ProyectoOL.Services
 {
     public class UserService
     {
-        public bool CreateUser(UserModel user)
+        public bool CreateUser(UserDto user)
         {
             UserRepository userRepository = new UserRepository();
             int result = userRepository.CreateUser(user);
@@ -21,10 +21,10 @@ namespace ProyectoOL.Services
             }
         }
 
-        public UserModel InicioSesion(UserModel userModel)
+        public UserDto InicioSesion(UserDto userModel)
         {
             UserRepository userRepository = new UserRepository();
-            UserModel userResponse = userRepository.Login(userModel);
+            UserDto userResponse = userRepository.Login(userModel);
             if(userResponse.Id_Usuario != 0) 
             {
                 userResponse.Message = "Successful Login";

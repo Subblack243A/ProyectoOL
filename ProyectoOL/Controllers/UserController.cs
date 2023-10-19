@@ -6,18 +6,18 @@ namespace ProyectoOL.Controllers
 {
     public class UserController : Controller
     {
-        UserModel userLogin = new UserModel();
+        UserDto userLogin = new UserDto();
 
         //GET: Register
         public ActionResult Register()
         {
-            UserModel user = new UserModel();
+            UserDto user = new UserDto();
             return View(user);
         }
 
         //POST: Register
         [HttpPost]
-        public ActionResult Register(UserModel user)
+        public ActionResult Register(UserDto user)
         {
             UserService userService = new UserService();
             bool result = userService.CreateUser(user);
@@ -34,12 +34,12 @@ namespace ProyectoOL.Controllers
         //GET login
         public ActionResult InicioSesion()
         {
-            UserModel user = new UserModel();
+            UserDto user = new UserDto();
             return View(user);
         }
         //POST login
         [HttpPost]
-        public ActionResult InicioSesion(UserModel usuario)
+        public ActionResult InicioSesion(UserDto usuario)
         {
             UserService usuarioService = new UserService();
             userLogin = usuarioService.InicioSesion(usuario);

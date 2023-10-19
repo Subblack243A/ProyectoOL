@@ -1,6 +1,6 @@
 ﻿namespace ProyectoOL.Models
 {
-    public class UserModel
+    public class UserDto
     {
         public int Id_Usuario {  get; set; }
         

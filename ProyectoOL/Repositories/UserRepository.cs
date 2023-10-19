@@ -7,7 +7,7 @@ namespace ProyectoOL.Repositories
 {
     public class UserRepository
     {
-        public int CreateUser(UserModel user) 
+        public int CreateUser(UserDto user) 
         {
             int comando = 0;
             DBContextUtility Connection = new DBContextUtility();
@@ -25,9 +25,9 @@ namespace ProyectoOL.Repositories
             return comando;
         }
 
-        public UserModel Login(UserModel user)
+        public UserDto Login(UserDto user)
         {
-            UserModel userResult = new UserModel();
+            UserDto userResult = new UserDto();
 
             //Consulta SQL
             string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"' AND CONTRASENA = '" + user.Contrasena+"';";
