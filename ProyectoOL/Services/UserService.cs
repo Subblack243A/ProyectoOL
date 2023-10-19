@@ -1,4 +1,4 @@
-﻿using ProyectoOL.Models;
+﻿using ProyectoOL.Dto;
 using ProyectoOL.Repositories;
 
 
@@ -25,7 +25,7 @@ namespace ProyectoOL.Services
         {
             UserRepository userRepository = new UserRepository();
             UserDto userResponse = userRepository.Login(userModel);
-            if(userResponse.Id_Usuario != 0) 
+            if (userResponse.Id_Usuario != 0)
             {
                 userResponse.Message = "Successful Login";
             }

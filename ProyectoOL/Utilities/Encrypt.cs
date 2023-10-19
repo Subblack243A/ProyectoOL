@@ -7,5 +7,6 @@ namespace ProyectoOL.Utilities
 {
     public class Encrypt
     {
+
     }
 }

@@ -13,10 +13,10 @@ namespace ProyectoOL.Repositories.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OLDBEntities : DbContext
+    public partial class OLDBEntities1 : DbContext
     {
-        public OLDBEntities()
-            : base("name=OLDBEntities")
+        public OLDBEntities1()
+            : base("name=OLDBEntities1")
         {
         }
     
@@ -25,10 +25,15 @@ namespace ProyectoOL.Repositories.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CAT_ESTADO> CAT_ESTADO { get; set; }
+        public virtual DbSet<CAT_GENERO> CAT_GENERO { get; set; }
         public virtual DbSet<CAT_LIBRO> CAT_LIBRO { get; set; }
+        public virtual DbSet<CAT_TIPO_DOCUMENTO> CAT_TIPO_DOCUMENTO { get; set; }
+        public virtual DbSet<CAT_TIPO_USUARIO> CAT_TIPO_USUARIO { get; set; }
         public virtual DbSet<COMPRA> COMPRAs { get; set; }
         public virtual DbSet<MULTA> MULTAs { get; set; }
         public virtual DbSet<PRESTAMO> PRESTAMOes { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<AUDITORIA> AUDITORIAs { get; set; }
     }
 }

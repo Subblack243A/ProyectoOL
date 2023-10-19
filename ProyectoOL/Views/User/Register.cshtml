@@ -1,4 +1,4 @@
-﻿@model ProyectoOL.Models.UserModel
+﻿@model ProyectoOL.Dto.UserDto
 
 @{
     ViewBag.Title = "Register";
@@ -6,7 +6,6 @@
 }
 
 <h2>Registro</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -87,5 +86,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Home/Index")
+    @Html.ActionLink("Volver al Inicio", "Home/Index", new { htmlAttributes = new { @class = "btn" } })
 </div>
