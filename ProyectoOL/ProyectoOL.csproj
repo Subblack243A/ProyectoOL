@@ -183,9 +183,9 @@
     </Compile>
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="Utilities\Correo.cs" />
+    <Compile Include="Utilities\EmailUtility.cs" />
     <Compile Include="Utilities\DBContextUtility.cs" />
-    <Compile Include="Utilities\Encrypt.cs" />
+    <Compile Include="Utilities\EncryptUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\FootStyle.css" />

@@ -13,7 +13,7 @@ namespace ProyectoOL.Repositories
         {
             try
             {
-                using (OLDBEntities db = new OLDBEntities())
+                using (OLDBEntities1 db = new OLDBEntities1())
                 {
                     var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
                     if (userVal != null)
@@ -69,7 +69,7 @@ namespace ProyectoOL.Repositories
             Connection.Disconnect();*/
 
             var TUser = new USUARIO();
-            using (OLDBEntities db = new OLDBEntities())
+            using (OLDBEntities1 db = new OLDBEntities1())
             {
                 TUser = (from d in db.USUARIOs 
                 where d.NOMBRE_USUARIO == user.Nombre_Usuario && d.CONTRASENA == user.Contrasena
