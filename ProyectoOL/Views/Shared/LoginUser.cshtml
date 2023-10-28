@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Open Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;600&family=Josefin+Sans:ital,wght@0,300;1,100;1,400&display=swap" rel="stylesheet">
+    <link href="~/Content/Reset.css" rel="stylesheet">
+    <link href="~/Content/HeaderStyle.css" rel="stylesheet">
+    <link href="~/Content/FootStyle.css" rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header class="menu">
+        @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
+        <nav>
+            <ul class="menu_login" type="none">
+                <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Biblioteca Digital", "Library", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Cerrar Sesión", "Index", "Home", new { area = "" }, new { @class = "menu_login_item btn" })</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="c">
+        @RenderBody()
+    </div>
+
+    <footer class="foot_container">
+        <div class="foot_contact">
+            <p>Encuentranos en:</p>
+            <img clas="logo_facebook" src="~/Images/facebook.svg" alt="Facebook" />
+            <img clas="logo_twitter" src="~/Images/twitter.svg" alt="Twitter" />
+            <img clas="logo_instagram" src="~/Images/instagram.svg" alt="Instagram" />
+        </div>
+        <div class="copy">
+            <p>Copyright© 2023</p>
+        </div>
+        <div>
+            @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

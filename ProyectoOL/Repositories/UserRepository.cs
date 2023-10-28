@@ -3,7 +3,7 @@ using ProyectoOL.Utilities;
 using System.Data.SqlClient;
 using ProyectoOL.Repositories.Models;
 using System.Linq;
-
+using System;
 
 namespace ProyectoOL.Repositories
 {
@@ -11,21 +11,40 @@ namespace ProyectoOL.Repositories
     {
         public int CreateUser(UserDto user) 
         {
-            Encrypt enc = new Encrypt();
-            int comando = 0;
-            DBContextUtility Connection = new DBContextUtility();
-            Connection.Connect();
-            //consulta SQL
-            string SQL = "INSERT INTO OLDB.dbo.[USUARIO] (FK_ESTADO,ID_USUARIO,NOMBRE_USUARIO,FK_TIPO_DOCUMENTO,FK_TIPO_USUARIO,NOMBRE,APELLIDO,CORREO_ELECTRONICO,CONTRASENA) "
-                + "VALUES (" + 1 + "," + user.Id_Usuario + ",'" + user.Nombre_Usuario + "'," + user.Tipo_Documento + "," + user.Tipo_Usuario + ",'"
-                + user.Nombre + "','" + user.Apellido + "','" + user.Correo_Electronico + "','" + user.Contrasena + "');";
-
-            using (SqlCommand command = new SqlCommand(SQL, Connection.CONN()))
+            try
             {
-                comando = command.ExecuteNonQuery();
+                using (OLDBEntities db = new OLDBEntities())
+                {
+                    var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
+                    if (userVal != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        USUARIO tUser = new USUARIO
+                        {
+                            FK_ESTADO = 2,
+                            ID_USUARIO = user.Id_Usuario,
+                            NOMBRE_USUARIO = user.Nombre_Usuario,
+                            FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                            FK_TIPO_USUARIO = 3,
+                            NOMBRE = user.Nombre,
+                            APELLIDO = user.Apellido,
+                            CORREO_ELECTRONICO = user.Correo_Electronico,
+                            CONTRASENA = user.Contrasena
+                        };
+                        db.USUARIOs.Add(tUser);
+                        db.SaveChanges();
+                        return 1;
+                    }
+                }
             }
-            Connection.Disconnect();
-            return comando;
+            catch (Exception e)
+            {
+                var mensaje = e.InnerException;
+                return 0;
+            }
         }
 
         public UserDto Login(UserDto user)
@@ -50,7 +69,7 @@ namespace ProyectoOL.Repositories
             Connection.Disconnect();*/
 
             var TUser = new USUARIO();
-            using (OLDBEntities1 db = new OLDBEntities1())
+            using (OLDBEntities db = new OLDBEntities())
             {
                 TUser = (from d in db.USUARIOs 
                 where d.NOMBRE_USUARIO == user.Nombre_Usuario && d.CONTRASENA == user.Contrasena
@@ -68,7 +87,6 @@ namespace ProyectoOL.Repositories
                 userResult.Correo_Electronico = TUser.CORREO_ELECTRONICO;
                 userResult.Tipo_Documento = TUser.FK_TIPO_DOCUMENTO;
             }
-            
 
             return userResult;
         }

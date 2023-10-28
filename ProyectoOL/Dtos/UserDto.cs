@@ -7,9 +7,9 @@ namespace ProyectoOL.Dto
         
         public string Nombre_Usuario { get; set; } = string.Empty;
 
-        public int Tipo_Documento { get; set;}
+        public short Tipo_Documento { get; set;}
 
-        public int Tipo_Usuario { get; set;}
+        public short Tipo_Usuario { get; set;}
 
         public string Nombre { get; set; } = string.Empty;
 

@@ -13,10 +13,10 @@ namespace ProyectoOL.Repositories.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OLDBEntities1 : DbContext
+    public partial class OLDBEntities : DbContext
     {
-        public OLDBEntities1()
-            : base("name=OLDBEntities1")
+        public OLDBEntities()
+            : base("name=OLDBEntities")
         {
         }
     
