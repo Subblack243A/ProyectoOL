@@ -22,11 +22,9 @@ namespace ProyectoOL.Dto
         public string Message {  get; set; } = string.Empty;
 
         public int Estado { get; set; }
-    }
 
-    /*public class InicioSesionModel
-    {
-        public string Usuario { get; set; }
-        public string Contrasena { get; set; }
-    }*/
+        public string KeySafe {  get; set; } = string.Empty;
+
+        public string Iv { get; set;} = string.Empty;
+    }
 }

@@ -175,6 +175,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OLDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Models\PANTALLA.cs">
+      <DependentUpon>OLDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Models\PRESTAMO.cs">
       <DependentUpon>OLDBModel.tt</DependentUpon>
     </Compile>
@@ -184,7 +187,6 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Utilities\EmailUtility.cs" />
-    <Compile Include="Utilities\DBContextUtility.cs" />
     <Compile Include="Utilities\EncryptUtility.cs" />
   </ItemGroup>
   <ItemGroup>
