@@ -18,6 +18,7 @@ namespace ProyectoOL.Repositories.Models
         public USUARIO()
         {
             this.COMPRAs = new HashSet<COMPRA>();
+            this.PANTALLAs = new HashSet<PANTALLA>();
             this.PRESTAMOes = new HashSet<PRESTAMO>();
         }
     
@@ -36,6 +37,8 @@ namespace ProyectoOL.Repositories.Models
         public virtual CAT_TIPO_USUARIO CAT_TIPO_USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<COMPRA> COMPRAs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PANTALLA> PANTALLAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRESTAMO> PRESTAMOes { get; set; }
     }

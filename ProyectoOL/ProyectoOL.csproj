@@ -175,6 +175,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OLDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Models\PANTALLA.cs">
+      <DependentUpon>OLDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Models\PRESTAMO.cs">
       <DependentUpon>OLDBModel.tt</DependentUpon>
     </Compile>
@@ -183,9 +186,8 @@
     </Compile>
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="Utilities\Correo.cs" />
-    <Compile Include="Utilities\DBContextUtility.cs" />
-    <Compile Include="Utilities\Encrypt.cs" />
+    <Compile Include="Utilities\EmailUtility.cs" />
+    <Compile Include="Utilities\EncryptUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\FootStyle.css" />
@@ -242,12 +244,12 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\InicioSesion.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Shared\LoginUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\cs\" />
     <Folder Include="Scripts\js\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

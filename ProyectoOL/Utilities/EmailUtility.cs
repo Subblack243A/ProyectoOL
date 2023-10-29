@@ -2,7 +2,7 @@
 
 namespace ProyectoOL.Utilities
 {
-    public class Correo
+    public class EmailUtility
     {
     }
 }

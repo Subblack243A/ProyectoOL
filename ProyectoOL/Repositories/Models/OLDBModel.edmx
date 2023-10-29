@@ -5,16 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="OLDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AUDITORIA">
           <Key>
             <PropertyRef Name="ID_AUDITORIA" />
-            <PropertyRef Name="USUARIO" />
-            <PropertyRef Name="ACCION" />
-            <PropertyRef Name="TABLA" />
-            <PropertyRef Name="SQL" />
-            <PropertyRef Name="FECHA" />
           </Key>
           <Property Name="ID_AUDITORIA" Type="int" Nullable="false" />
           <Property Name="USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
@@ -82,6 +75,15 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <Property Name="FK_PRESTAMO" Type="int" Nullable="false" />
           <Property Name="FECHA_MULTA" Type="date" Nullable="false" />
           <Property Name="VALOR_MULTA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PANTALLA">
+          <Key>
+            <PropertyRef Name="ID_PANTALLA" />
+          </Key>
+          <Property Name="ID_PANTALLA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PANTALLA" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MONITOR" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FK_USUARIO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PRESTAMO">
           <Key>
@@ -167,6 +169,18 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PANTALLA_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PANTALLA" Type="Self.PANTALLA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PANTALLA">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRESTAMO_CAT_LIBRO">
           <End Role="CAT_LIBRO" Type="Self.CAT_LIBRO" Multiplicity="1" />
           <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
@@ -228,6 +242,7 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OLDBModelStoreContainer">
+          <EntitySet Name="AUDITORIA" EntityType="Self.AUDITORIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAT_ESTADO" EntityType="Self.CAT_ESTADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAT_GENERO" EntityType="Self.CAT_GENERO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAT_LIBRO" EntityType="Self.CAT_LIBRO" Schema="dbo" store:Type="Tables" />
@@ -235,18 +250,9 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <EntitySet Name="CAT_TIPO_USUARIO" EntityType="Self.CAT_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COMPRA" EntityType="Self.COMPRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MULTA" EntityType="Self.MULTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PANTALLA" EntityType="Self.PANTALLA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRESTAMO" EntityType="Self.PRESTAMO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AUDITORIA" EntityType="Self.AUDITORIA" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [AUDITORIA].[ID_AUDITORIA] AS [ID_AUDITORIA], 
-    [AUDITORIA].[USUARIO] AS [USUARIO], 
-    [AUDITORIA].[ACCION] AS [ACCION], 
-    [AUDITORIA].[TABLA] AS [TABLA], 
-    [AUDITORIA].[SQL] AS [SQL], 
-    [AUDITORIA].[FECHA] AS [FECHA]
-    FROM [dbo].[AUDITORIA] AS [AUDITORIA]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_CAT_LIBRO_CAT_ESTADO" Association="Self.FK_CAT_LIBRO_CAT_ESTADO">
             <End Role="CAT_ESTADO" EntitySet="CAT_ESTADO" />
             <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
@@ -266,6 +272,10 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <AssociationSet Name="FK_MULTA_PRESTAMO" Association="Self.FK_MULTA_PRESTAMO">
             <End Role="PRESTAMO" EntitySet="PRESTAMO" />
             <End Role="MULTA" EntitySet="MULTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANTALLA_USUARIO" Association="Self.FK_PANTALLA_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PANTALLA" EntitySet="PANTALLA" />
           </AssociationSet>
           <AssociationSet Name="FK_PRESTAMO_CAT_LIBRO" Association="Self.FK_PRESTAMO_CAT_LIBRO">
             <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
@@ -293,6 +303,17 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OLDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUDITORIA">
+          <Key>
+            <PropertyRef Name="ID_AUDITORIA" />
+          </Key>
+          <Property Name="ID_AUDITORIA" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TABLA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="CAT_ESTADO">
           <Key>
             <PropertyRef Name="ID_ESTADO" />
@@ -365,6 +386,16 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <Property Name="VALOR_MULTA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PRESTAMO" Relationship="Self.FK_MULTA_PRESTAMO" FromRole="MULTA" ToRole="PRESTAMO" />
         </EntityType>
+        <EntityType Name="PANTALLA">
+          <Key>
+            <PropertyRef Name="ID_PANTALLA" />
+          </Key>
+          <Property Name="ID_PANTALLA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PANTALLA1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MONITOR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_USUARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_PANTALLA_USUARIO" FromRole="PANTALLA" ToRole="USUARIO" />
+        </EntityType>
         <EntityType Name="PRESTAMO">
           <Key>
             <PropertyRef Name="ID_PRESTAMO" />
@@ -395,23 +426,8 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <NavigationProperty Name="CAT_TIPO_DOCUMENTO" Relationship="Self.FK_USUARIO_CAT_TIPO_DOCUMENTO" FromRole="USUARIO" ToRole="CAT_TIPO_DOCUMENTO" />
           <NavigationProperty Name="CAT_TIPO_USUARIO" Relationship="Self.FK_USUARIO_CAT_TIPO_USUARIO" FromRole="USUARIO" ToRole="CAT_TIPO_USUARIO" />
           <NavigationProperty Name="COMPRAs" Relationship="Self.FK_COMPRA_USUARIO" FromRole="USUARIO" ToRole="COMPRA" />
+          <NavigationProperty Name="PANTALLAs" Relationship="Self.FK_PANTALLA_USUARIO" FromRole="USUARIO" ToRole="PANTALLA" />
           <NavigationProperty Name="PRESTAMOes" Relationship="Self.FK_PRESTAMO_USUARIO" FromRole="USUARIO" ToRole="PRESTAMO" />
-        </EntityType>
-        <EntityType Name="AUDITORIA">
-          <Key>
-            <PropertyRef Name="ID_AUDITORIA" />
-            <PropertyRef Name="USUARIO" />
-            <PropertyRef Name="ACCION" />
-            <PropertyRef Name="TABLA" />
-            <PropertyRef Name="SQL" />
-            <PropertyRef Name="FECHA" />
-          </Key>
-          <Property Name="ID_AUDITORIA" Type="Int32" Nullable="false" />
-          <Property Name="USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ACCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TABLA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SQL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_CAT_LIBRO_CAT_ESTADO">
           <End Role="CAT_ESTADO" Type="Self.CAT_ESTADO" Multiplicity="1" />
@@ -521,6 +537,18 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PANTALLA_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PANTALLA" Type="Self.PANTALLA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PANTALLA">
+              <PropertyRef Name="FK_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRESTAMO_USUARIO">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
           <End Role="PRESTAMO" Type="Self.PRESTAMO" Multiplicity="*" />
@@ -533,7 +561,8 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OLDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OLDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUDITORIAs" EntityType="Self.AUDITORIA" />
           <EntitySet Name="CAT_ESTADO" EntityType="Self.CAT_ESTADO" />
           <EntitySet Name="CAT_GENERO" EntityType="Self.CAT_GENERO" />
           <EntitySet Name="CAT_LIBRO" EntityType="Self.CAT_LIBRO" />
@@ -541,9 +570,9 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
           <EntitySet Name="CAT_TIPO_USUARIO" EntityType="Self.CAT_TIPO_USUARIO" />
           <EntitySet Name="COMPRAs" EntityType="Self.COMPRA" />
           <EntitySet Name="MULTAs" EntityType="Self.MULTA" />
+          <EntitySet Name="PANTALLAs" EntityType="Self.PANTALLA" />
           <EntitySet Name="PRESTAMOes" EntityType="Self.PRESTAMO" />
           <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
-          <EntitySet Name="AUDITORIAs" EntityType="Self.AUDITORIA" />
           <AssociationSet Name="FK_CAT_LIBRO_CAT_ESTADO" Association="Self.FK_CAT_LIBRO_CAT_ESTADO">
             <End Role="CAT_ESTADO" EntitySet="CAT_ESTADO" />
             <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
@@ -580,6 +609,10 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
             <End Role="PRESTAMO" EntitySet="PRESTAMOes" />
             <End Role="MULTA" EntitySet="MULTAs" />
           </AssociationSet>
+          <AssociationSet Name="FK_PANTALLA_USUARIO" Association="Self.FK_PANTALLA_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="PANTALLA" EntitySet="PANTALLAs" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRESTAMO_USUARIO" Association="Self.FK_PRESTAMO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIOs" />
             <End Role="PRESTAMO" EntitySet="PRESTAMOes" />
@@ -590,7 +623,19 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities">
+          <EntitySetMapping Name="AUDITORIAs">
+            <EntityTypeMapping TypeName="OLDBModel.AUDITORIA">
+              <MappingFragment StoreEntitySet="AUDITORIA">
+                <ScalarProperty Name="ID_AUDITORIA" ColumnName="ID_AUDITORIA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ACCION" ColumnName="ACCION" />
+                <ScalarProperty Name="TABLA" ColumnName="TABLA" />
+                <ScalarProperty Name="SQL" ColumnName="SQL" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CAT_ESTADO">
             <EntityTypeMapping TypeName="OLDBModel.CAT_ESTADO">
               <MappingFragment StoreEntitySet="CAT_ESTADO">
@@ -658,6 +703,16 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PANTALLAs">
+            <EntityTypeMapping TypeName="OLDBModel.PANTALLA">
+              <MappingFragment StoreEntitySet="PANTALLA">
+                <ScalarProperty Name="ID_PANTALLA" ColumnName="ID_PANTALLA" />
+                <ScalarProperty Name="PANTALLA1" ColumnName="PANTALLA" />
+                <ScalarProperty Name="MONITOR" ColumnName="MONITOR" />
+                <ScalarProperty Name="FK_USUARIO" ColumnName="FK_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PRESTAMOes">
             <EntityTypeMapping TypeName="OLDBModel.PRESTAMO">
               <MappingFragment StoreEntitySet="PRESTAMO">
@@ -681,18 +736,6 @@ advertencia 6002: La tabla o vista 'OLDB.dbo.AUDITORIA' no tiene definida ningun
                 <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
                 <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AUDITORIAs">
-            <EntityTypeMapping TypeName="OLDBModel.AUDITORIA">
-              <MappingFragment StoreEntitySet="AUDITORIA">
-                <ScalarProperty Name="ID_AUDITORIA" ColumnName="ID_AUDITORIA" />
-                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-                <ScalarProperty Name="ACCION" ColumnName="ACCION" />
-                <ScalarProperty Name="TABLA" ColumnName="TABLA" />
-                <ScalarProperty Name="SQL" ColumnName="SQL" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

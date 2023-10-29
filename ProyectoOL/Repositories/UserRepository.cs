@@ -1,9 +1,9 @@
 ﻿using ProyectoOL.Dto;
-using ProyectoOL.Utilities;
-using System.Data.SqlClient;
 using ProyectoOL.Repositories.Models;
 using System.Linq;
-
+using System;
+using System.Drawing;
+using System.Web.UI.WebControls;
 
 namespace ProyectoOL.Repositories
 {
@@ -11,66 +11,111 @@ namespace ProyectoOL.Repositories
     {
         public int CreateUser(UserDto user) 
         {
-            Encrypt enc = new Encrypt();
-            int comando = 0;
-            DBContextUtility Connection = new DBContextUtility();
-            Connection.Connect();
-            //consulta SQL
-            string SQL = "INSERT INTO OLDB.dbo.[USUARIO] (FK_ESTADO,ID_USUARIO,NOMBRE_USUARIO,FK_TIPO_DOCUMENTO,FK_TIPO_USUARIO,NOMBRE,APELLIDO,CORREO_ELECTRONICO,CONTRASENA) "
-                + "VALUES (" + 1 + "," + user.Id_Usuario + ",'" + user.Nombre_Usuario + "'," + user.Tipo_Documento + "," + user.Tipo_Usuario + ",'"
-                + user.Nombre + "','" + user.Apellido + "','" + user.Correo_Electronico + "','" + user.Contrasena + "');";
-
-            using (SqlCommand command = new SqlCommand(SQL, Connection.CONN()))
+            try
             {
-                comando = command.ExecuteNonQuery();
+                using (OLDBEntities db = new OLDBEntities())
+                {
+                    var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
+                    if (userVal != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        USUARIO tUser = new USUARIO
+                        {
+                            FK_ESTADO = 2,
+                            ID_USUARIO = user.Id_Usuario,
+                            NOMBRE_USUARIO = user.Nombre_Usuario,
+                            FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                            FK_TIPO_USUARIO = 3,
+                            NOMBRE = user.Nombre,
+                            APELLIDO = user.Apellido,
+                            CORREO_ELECTRONICO = user.Correo_Electronico,
+                            CONTRASENA = user.Contrasena
+                        };
+                        PANTALLA tPantalla = new PANTALLA
+                        {
+                            FK_USUARIO = user.Id_Usuario,
+                            PANTALLA1 = user.KeySafe,
+                            MONITOR = user.Iv
+                        };
+                        db.USUARIOs.Add(tUser);
+                        db.PANTALLAs.Add(tPantalla);
+                        db.SaveChanges();
+                        return 1;
+                    }
+                }
             }
-            Connection.Disconnect();
-            return comando;
+            catch (Exception e)
+            {
+                var mensaje = e.InnerException;
+                return 0;
+            }
         }
 
         public UserDto Login(UserDto user)
         {
             UserDto userResult = new UserDto();
+            user = Find(user);
 
-            //Consulta SQL
-            /*string SQL = "SELECT NOMBRE_USUARIO, CONTRASENA FROM OLDB.dbo.[USUARIO] WHERE NOMBRE_USUARIO = '"+user.Nombre_Usuario+"' AND CONTRASENA = '" + user.Contrasena+"';";
-            DBContextUtility Connection = new DBContextUtility();
-            Connection.Connect();
-            using(SqlCommand command = new SqlCommand(SQL,Connection.CONN()))
-            {
-                using(SqlDataReader reader = command.ExecuteReader())
-                {
-                    if(reader.Read())
-                    {
-                        userResult.Contrasena = reader.GetString(1);
-                        userResult.Nombre_Usuario = reader.GetString(0);
-                    }
-                }
-            }
-            Connection.Disconnect();*/
+            var TUsuario = new USUARIO();
 
-            var TUser = new USUARIO();
-            using (OLDBEntities1 db = new OLDBEntities1())
+            using(OLDBEntities db = new OLDBEntities())
             {
-                TUser = (from d in db.USUARIOs 
-                where d.NOMBRE_USUARIO == user.Nombre_Usuario && d.CONTRASENA == user.Contrasena
-                select d).FirstOrDefault();
-            }
-            if(TUser != null)
-            {
-                userResult.Id_Usuario = TUser.ID_USUARIO;
-                userResult.Tipo_Usuario = TUser.FK_TIPO_USUARIO;
-                userResult.Estado = TUser.FK_ESTADO;
-                userResult.Nombre = TUser.NOMBRE;
-                userResult.Apellido = TUser.APELLIDO;
-                userResult.Nombre_Usuario = TUser.NOMBRE_USUARIO;
-                userResult.Contrasena = TUser.CONTRASENA;
-                userResult.Correo_Electronico = TUser.CORREO_ELECTRONICO;
-                userResult.Tipo_Documento = TUser.FK_TIPO_DOCUMENTO;
-            }
+                TUsuario = (from u in db.USUARIOs
+                where u.NOMBRE_USUARIO == user.Nombre_Usuario && u.CONTRASENA == user.Contrasena
+                select u).FirstOrDefault();
+            } 
             
-
+            if (TUsuario != null)
+            {
+                userResult.Id_Usuario = TUsuario.ID_USUARIO;
+                userResult.Tipo_Usuario = TUsuario.FK_TIPO_USUARIO;
+                userResult.Estado = TUsuario.FK_ESTADO;
+                userResult.Nombre = TUsuario.NOMBRE;
+                userResult.Apellido = TUsuario.APELLIDO;
+                userResult.Nombre_Usuario = TUsuario.NOMBRE_USUARIO;
+                userResult.Contrasena = TUsuario.CONTRASENA;
+                userResult.Correo_Electronico = TUsuario.CORREO_ELECTRONICO;
+                userResult.Tipo_Documento = TUsuario.FK_TIPO_DOCUMENTO;
+            }
             return userResult;
+        }
+
+        public UserDto Find(UserDto user)
+        {
+            EncryptUtility encryptUtility = new EncryptUtility();
+            UserDto usuario = new UserDto();
+            var TUsuario = new USUARIO();
+            var TPantalla = new PANTALLA();
+            using (OLDBEntities db = new OLDBEntities())
+            {
+                TUsuario = (from d in db.USUARIOs
+                            where d.NOMBRE_USUARIO == user.Nombre_Usuario
+                            select d).FirstOrDefault();
+            }
+            if (TUsuario != null)
+            {
+                usuario.Id_Usuario = TUsuario.ID_USUARIO;
+            }
+            using (OLDBEntities db = new OLDBEntities())
+            {
+                TPantalla = (from p in db.PANTALLAs
+                where p.FK_USUARIO == usuario.Id_Usuario
+                select p).FirstOrDefault();
+            }
+            if (TPantalla != null)
+            {
+                user.KeySafe = TPantalla.PANTALLA1;
+                user.Iv = TPantalla.MONITOR;
+            }
+
+            encryptUtility.SetKeySafe(user.KeySafe);
+            encryptUtility.SetIv(user.Iv);
+            user.Contrasena = encryptUtility.Decrypt(user.Contrasena);
+
+            return user;
         }
     }
 }
