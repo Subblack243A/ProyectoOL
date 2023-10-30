@@ -25,6 +25,22 @@ namespace ProyectoOL.Services
             }
         }
 
+        public UserDto CleanUser(UserDto user)
+        {
+            user.Id_Usuario = 0;
+            user.Nombre_Usuario = null;
+            user.Tipo_Usuario = 0;
+            user.Tipo_Documento = 0;
+            user.Nombre = null;
+            user.Apellido = null;
+            user.Correo_Electronico = null;
+            user.KeySafe = null;
+            user.Iv = null;
+            user.Contrasena = null;
+            user.Estado = 0;
+            return user;
+        }
+
         public UserDto InicioSesion(UserDto userModel)
         {
             UserRepository userRepository = new UserRepository();

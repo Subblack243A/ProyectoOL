@@ -23,6 +23,7 @@ namespace ProyectoOL.Controllers
             bool result = userService.CreateUser(user);
             if (result)
             {
+                user = userService.CleanUser(user);
                 return View("InicioSesion");
             }
             else
