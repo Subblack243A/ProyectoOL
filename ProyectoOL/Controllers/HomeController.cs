@@ -1,5 +1,4 @@
-﻿
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
@@ -10,16 +9,9 @@ namespace ProyectoOL.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Digital()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }

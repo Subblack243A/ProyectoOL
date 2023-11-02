@@ -246,6 +246,7 @@
     <Content Include="Views\User\InicioSesion.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
     <Content Include="Views\Shared\LoginUser.cshtml" />
+    <Content Include="Views\Home\Digital.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
