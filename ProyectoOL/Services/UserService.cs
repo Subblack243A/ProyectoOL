@@ -6,7 +6,7 @@ namespace ProyectoOL.Services
 {
     public class UserService
     {
-        public bool CreateUser(UserDto user)
+        public UserDto CreateUser(UserDto user)
         {
             EncryptUtility encryptUtility = new EncryptUtility();
             user.Contrasena = encryptUtility.Encrypt(user.Contrasena);
@@ -17,17 +17,17 @@ namespace ProyectoOL.Services
 
             if(result == 1)
             {
-                return true;
+                return user;
             }
             else
             {
-                return false;
+                return CleanUser(user);
             }
         }
 
         public UserDto CleanUser(UserDto user)
         {
-            user.Id_Usuario = 0;
+            user.Id_Usuario = -1;
             user.Nombre_Usuario = null;
             user.Tipo_Usuario = 0;
             user.Tipo_Documento = 0;

@@ -1,0 +1,24 @@
+﻿.cuerpo_registro {
+    background-color: #DBD3D0;
+}
+
+.titulo_osuro {
+    font-family: Josefin Sans, italic;
+    font-weight: 800;
+    font-size: 3rem;
+    text-decoration: none;
+    color: #29282D;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.container_registro {
+    width: 75%;
+    height: 100%;
+}
+
+.espacio_registro{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2rem;
+}
