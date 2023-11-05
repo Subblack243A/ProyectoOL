@@ -69,6 +69,7 @@
         </div>
     </div>
 
+
     <div class="espacio_registro">
         @Html.LabelFor(model => model.Nombre_Usuario, "Nombre de usuario:", htmlAttributes: new { @class = "control-label col-md-2 custom-space" })
         <div class="col-md-10">
@@ -90,6 +91,13 @@
         <a href="~/Views/Home/Index.cshtml" class="btn btn-secondary">Cancelar</a>
     </div>
 </div>
+            <div class="espacio_registro">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Registrarse" class="btn menu_login_item" />
+                    @Html.ActionLink("Cancelar", "Index", "Home", new {area = " "}, new {@class = "btn menu_login_item"})
+                </div>
+            </div>
+        </div>
 
     }
 </section>

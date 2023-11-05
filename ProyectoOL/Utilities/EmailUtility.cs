@@ -24,7 +24,7 @@ namespace ProyectoOL.Utilities
             };
         }
 
-        public void SendEmail(string destino, string asunto, string mensaje, bool esHtml = false)
+        public void SendEmail(string destino, string asunto, string mensaje, bool esHtml)
         {
             email = new MailMessage(User, destino, asunto, mensaje);
             email.IsBodyHtml = esHtml;
