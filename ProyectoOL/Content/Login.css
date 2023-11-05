@@ -1,0 +1,51 @@
+﻿/* Asegura que el footer esté siempre al final de la página */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333; /* Cambia el color de fondo del footer */
+    color: white; /* Cambia el color del texto en el footer */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Centra el formulario verticalmente */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+}
+/* Ajusta el ancho de las columnas */
+
+
+/* Estilos adicionales para el formulario */
+.form-group {
+    margin: 15px 0;
+}
+
+/* Estilo para los botones */
+.btn {
+    margin-right: 10px;
+}
+
+/* Ajusta el tamaño de fuente de los elementos del formulario */
+.form-control {
+    font-size: 16px; /* Cambia el tamaño de fuente según tus preferencias */
+}
+
+.page{
+    background-color: #DBD3D0;
+}
+
+.spaces{
+    width: 40vh;
+}
+
+.custom-label {
+    color: #6768AB;
+    font-size: 18px; /* Tamaño de la fuente */
+    margin-bottom: 10px; /* Margen inferior */
+    font-weight: 600;
+}
