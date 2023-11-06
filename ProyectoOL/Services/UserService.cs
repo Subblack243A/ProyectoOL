@@ -8,6 +8,7 @@ namespace ProyectoOL.Services
     {
         public UserDto CreateUser(UserDto user)
         {
+            
             EncryptUtility encryptUtility = new EncryptUtility();
             user.Contrasena = encryptUtility.Encrypt(user.Contrasena);
             user.KeySafe = encryptUtility.GetKeySafe();
