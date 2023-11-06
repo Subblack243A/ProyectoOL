@@ -1,26 +1,40 @@
-﻿.foot_container {
-    align-items: center;
+﻿/* Estilo del contenedor del footer */
+.foot_container {
     background-color: #7C6460;
+    padding: 1.5rem 4rem; /* Agregar espacio a los bordes laterales */
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
-    height: 6rem;
+    align-items: center;
 }
 
-.foot_contact {
-    font-family: Josefin Sans, italic;
+/* Estilo del texto de la etiqueta <p> en .foot_contact */
+.foot_contact p {
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 600;
     color: #F0ECE9;
+    margin-bottom: 4px;
 }
 
+/* Estilo de los logotipos en .social-icons */
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+    /* Estilo de los íconos */
+    .social-icons i {
+        font-size: 35px;
+        margin-right: 10px;
+        color: #000000;
+    }
+
+/* Estilo del texto de derechos de autor */
+/* Estilo del texto de derechos de autor */
 .copy {
-    font-family: Josefin Sans, italic;
-    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
     color: #F0ECE9;
-    position: relative;
-    top: 50%;
-}
-
-.logo_twitter {
-    width: 100%;
+    text-align: center; /* Centrar el texto horizontalmente */
+    font-size: 20px; /* Aumentar el tamaño del texto */
+    margin-top: 20px; /* Agregar espacio arriba para bajar el texto */
 }

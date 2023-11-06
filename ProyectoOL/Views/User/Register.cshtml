@@ -1,13 +1,13 @@
-﻿@model ProyectoOL.Dto.UserDto
+@model ProyectoOL.Dto.UserDto
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrar usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="cuerpo_registro">
-    <h2 class="titulo_oscuro">Registro</h2>
-@using (Html.BeginForm())
-    {
+  <h2 class="titulo_oscuro">Registro</h2>
+  @using (Html.BeginForm())
+  {
             @Html.AntiForgeryToken()
             <div class="container_registro">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -88,7 +88,6 @@
             <div class="buttons">
                 <input type="submit" value="Guardar" class="btn btn-primary">
                 @Html.ActionLink("Cancelar", "Index", "Home", new {area = " "}, new {@class = "btn btn-primary"})
-            </div>
-        </div>
+            <div/>
     }
 </section>
