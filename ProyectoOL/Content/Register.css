@@ -9,7 +9,7 @@
     width: 100%;
     /* La sección ocupa toda la pantalla del usuario */
     background-color: #DBD3D0;
-    min-height: 81vh
+    min-height: 92vh
 }
 
 /* Estilo de los campos y etiquetas */
@@ -17,9 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 55vh;
+    padding: 20px;
 }
 
 .control-label {
@@ -28,7 +26,7 @@
     /* Alinea el texto a la izquierda */
     color: #333;
     /* Cambia el color del texto de las etiquetas */
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .form-control {
@@ -75,6 +73,7 @@ a:hover {
     margin-bottom: 10px;
     /* Margen inferior */
     font-weight: 700;
+    min-width: 20%;
 }
 
 .buttons {

@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PageNotFound</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ajusta la altura a tu preferencia */
+        }
+
+        .centered-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .menu_login_item {
+            text-decoration: none;
+            color: #000; /* Color del texto */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="@Url.Action("Index", "Home")" class="menu_login_item">
+            <img src="https://i.imgur.com/YayiYqj.png" alt="source: imgur.com" class="centered-image" />
+        </a>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@ namespace ProyectoOL.Repositories
         {
             try
             {
-                using (OLDBEntities db = new OLDBEntities())
+                using (OLDBEntities1 db = new OLDBEntities1())
                 {
                     var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
                     if (userVal != null)
@@ -61,7 +61,7 @@ namespace ProyectoOL.Repositories
 
             var TUsuario = new USUARIO();
 
-            using(OLDBEntities db = new OLDBEntities())
+            using(OLDBEntities1 db = new OLDBEntities1())
             {
                 TUsuario = (from u in db.USUARIOs
                 where u.NOMBRE_USUARIO == user.Nombre_Usuario && u.CONTRASENA == user.Contrasena
@@ -89,7 +89,7 @@ namespace ProyectoOL.Repositories
             UserDto usuario = new UserDto();
             var TUsuario = new USUARIO();
             var TPantalla = new PANTALLA();
-            using (OLDBEntities db = new OLDBEntities())
+            using (OLDBEntities1 db = new OLDBEntities1())
             {
                 TUsuario = (from d in db.USUARIOs
                             where d.NOMBRE_USUARIO == user.Nombre_Usuario
@@ -99,7 +99,7 @@ namespace ProyectoOL.Repositories
             {
                 usuario.Id_Usuario = TUsuario.ID_USUARIO;
             }
-            using (OLDBEntities db = new OLDBEntities())
+            using (OLDBEntities1 db = new OLDBEntities1())
             {
                 TPantalla = (from p in db.PANTALLAs
                 where p.FK_USUARIO == usuario.Id_Usuario

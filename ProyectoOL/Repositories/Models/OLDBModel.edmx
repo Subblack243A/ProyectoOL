@@ -9,11 +9,13 @@
           <Key>
             <PropertyRef Name="ID_AUDITORIA" />
           </Key>
-          <Property Name="ID_AUDITORIA" Type="int" Nullable="false" />
+          <Property Name="ID_AUDITORIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ACCION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TABLA" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="SQL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CAMPO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="VALOR_ANTERIOR" Type="nvarchar" MaxLength="255" />
+          <Property Name="VALOR_NUEVO" Type="nvarchar" MaxLength="255" />
           <Property Name="FECHA" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CAT_ESTADO">
@@ -42,7 +44,8 @@
           <Property Name="FK_ESTADO" Type="smallint" Nullable="false" />
           <Property Name="PRECIO" Type="int" />
           <Property Name="UBICACION" Type="varchar" MaxLength="4" />
-          <Property Name="URL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IMAGEN" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PDF" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="CAT_TIPO_DOCUMENTO">
           <Key>
@@ -307,11 +310,13 @@
           <Key>
             <PropertyRef Name="ID_AUDITORIA" />
           </Key>
-          <Property Name="ID_AUDITORIA" Type="Int32" Nullable="false" />
+          <Property Name="ID_AUDITORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ACCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TABLA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SQL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CAMPO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VALOR_ANTERIOR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VALOR_NUEVO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="CAT_ESTADO">
@@ -343,7 +348,8 @@
           <Property Name="FK_ESTADO" Type="Int16" Nullable="false" />
           <Property Name="PRECIO" Type="Int32" />
           <Property Name="UBICACION" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGEN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CAT_ESTADO" Relationship="Self.FK_CAT_LIBRO_CAT_ESTADO" FromRole="CAT_LIBRO" ToRole="CAT_ESTADO" />
           <NavigationProperty Name="CAT_GENERO" Relationship="Self.FK_CAT_LIBRO_CAT_GENERO" FromRole="CAT_LIBRO" ToRole="CAT_GENERO" />
           <NavigationProperty Name="COMPRAs" Relationship="Self.FK_COMPRA_CAT_LIBRO" FromRole="CAT_LIBRO" ToRole="COMPRA" />
@@ -561,7 +567,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OLDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OLDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AUDITORIAs" EntityType="Self.AUDITORIA" />
           <EntitySet Name="CAT_ESTADO" EntityType="Self.CAT_ESTADO" />
           <EntitySet Name="CAT_GENERO" EntityType="Self.CAT_GENERO" />
@@ -623,7 +629,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities">
+        <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities1">
           <EntitySetMapping Name="AUDITORIAs">
             <EntityTypeMapping TypeName="OLDBModel.AUDITORIA">
               <MappingFragment StoreEntitySet="AUDITORIA">
@@ -631,7 +637,9 @@
                 <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
                 <ScalarProperty Name="ACCION" ColumnName="ACCION" />
                 <ScalarProperty Name="TABLA" ColumnName="TABLA" />
-                <ScalarProperty Name="SQL" ColumnName="SQL" />
+                <ScalarProperty Name="CAMPO" ColumnName="CAMPO" />
+                <ScalarProperty Name="VALOR_ANTERIOR" ColumnName="VALOR_ANTERIOR" />
+                <ScalarProperty Name="VALOR_NUEVO" ColumnName="VALOR_NUEVO" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -663,7 +671,8 @@
                 <ScalarProperty Name="FK_ESTADO" ColumnName="FK_ESTADO" />
                 <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
                 <ScalarProperty Name="UBICACION" ColumnName="UBICACION" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+                <ScalarProperty Name="PDF" ColumnName="PDF" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
