@@ -2,8 +2,6 @@
 using ProyectoOL.Repositories.Models;
 using System.Linq;
 using System;
-using System.Drawing;
-using System.Web.UI.WebControls;
 
 namespace ProyectoOL.Repositories
 {
@@ -13,7 +11,7 @@ namespace ProyectoOL.Repositories
         {
             try
             {
-                using (OLDBEntities1 db = new OLDBEntities1())
+                using (OLDBEntities db = new OLDBEntities())
                 {
                     var userVal = db.USUARIO.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
                     if (userVal != null)
@@ -28,7 +26,7 @@ namespace ProyectoOL.Repositories
                             ID_USUARIO = user.Id_Usuario,
                             NOMBRE_USUARIO = user.Nombre_Usuario,
                             FK_TIPO_DOCUMENTO = user.Tipo_Documento,
-                            FK_TIPO_USUARIO = 3,
+                            FK_TIPO_USUARIO = 2,
                             NOMBRE = user.Nombre,
                             APELLIDO = user.Apellido,
                             CORREO_ELECTRONICO = user.Correo_Electronico,
@@ -61,7 +59,7 @@ namespace ProyectoOL.Repositories
 
             var TUsuario = new USUARIO();
 
-            using(OLDBEntities1 db = new OLDBEntities1())
+            using(OLDBEntities db = new OLDBEntities())
             {
                 TUsuario = (from u in db.USUARIO
                 where u.NOMBRE_USUARIO == user.Nombre_Usuario && u.CONTRASENA == user.Contrasena
@@ -89,7 +87,7 @@ namespace ProyectoOL.Repositories
             UserDto usuario = new UserDto();
             var TUsuario = new USUARIO();
             var TPantalla = new PANTALLA();
-            using (OLDBEntities1 db = new OLDBEntities1())
+            using (OLDBEntities db = new OLDBEntities())
             {
                 TUsuario = (from d in db.USUARIO
                             where d.NOMBRE_USUARIO == user.Nombre_Usuario
@@ -99,7 +97,7 @@ namespace ProyectoOL.Repositories
             {
                 usuario.Id_Usuario = TUsuario.ID_USUARIO;
             }
-            using (OLDBEntities1 db = new OLDBEntities1())
+            using (OLDBEntities db = new OLDBEntities())
             {
                 TPantalla = (from p in db.PANTALLA
                 where p.FK_USUARIO == usuario.Id_Usuario

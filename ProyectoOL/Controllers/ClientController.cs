@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using ProyectoOL.Dtos;
+using ProyectoOL.Services;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
@@ -6,7 +9,8 @@ namespace ProyectoOL.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            BooksService booksService = new BooksService();
+            return View(booksService.GetAllBooks());
         }
 
         public ActionResult DigitalLibrary()

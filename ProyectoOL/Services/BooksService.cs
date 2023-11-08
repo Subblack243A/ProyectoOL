@@ -1,5 +1,6 @@
 ﻿using ProyectoOL.Dtos;
 using ProyectoOL.Repositories;
+using System.Collections.Generic;
 
 namespace ProyectoOL.Services
 {
@@ -31,6 +32,13 @@ namespace ProyectoOL.Services
             book.Pdf = null;
             book.Indice = 0;
             return book;
+        }
+
+        public List<BookDto> GetAllBooks()
+        {
+            BookRepository bookRepository = new BookRepository();
+            List<BookDto>  books = bookRepository.GetAllBooks();
+            return books;
         }
     }
 }
