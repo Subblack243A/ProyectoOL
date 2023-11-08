@@ -18,7 +18,9 @@ namespace ProyectoOL.Repositories.Models
         public string USUARIO { get; set; }
         public string ACCION { get; set; }
         public string TABLA { get; set; }
-        public string SQL { get; set; }
+        public string CAMPO { get; set; }
+        public string VALOR_ANTERIOR { get; set; }
+        public string VALOR_NUEVO { get; set; }
         public System.DateTime FECHA { get; set; }
     }
 }

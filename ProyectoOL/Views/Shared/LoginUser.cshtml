@@ -11,16 +11,32 @@
     <link href="~/Content/Reset.css" rel="stylesheet">
     <link href="~/Content/HeaderStyle.css" rel="stylesheet">
     <link href="~/Content/FootStyle.css" rel="stylesheet">
+    <link href="~/Content/Dashboard.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     @Scripts.Render("~/bundles/modernizr")
 </head>
+<style>
+    .btn-primary {
+        background-color: #6768AB;
+        border-color: #6768AB;
+    }
+
+        .btn-primary:hover {
+            background-color: #474776;
+            border-color: #474776;
+        }
+</style>
+
 <body>
-    <header class="menu">
-        @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
-        <nav>
-            <ul class="menu_login" type="none">
-                <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
-                <li>@Html.ActionLink("Biblioteca Digital", "Library", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
-                <li>@Html.ActionLink("Cerrar Sesión", "Index", "Home", new { area = "" }, new { @class = "menu_login_item btn" })</li>
+    <header class="menu d-flex align-items-center justify-content-between">
+        <div>
+                <img src="https://i.imgur.com/Ab8qnan.png" style="max-width: 250px; height: auto;" />
+        </div>
+        <nav class="barra">
+            <ul class="menu_login d-flex align-items-center list-unstyled">
+                <li>@Html.ActionLink("Biblioteca Digital", "DigitalLibrary", "Client", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Cerrrar Sesion", "Index", "Home", new { area = "" }, new { @class = "menu_login_item btn btn-primary" })</li>
             </ul>
         </nav>
     </header>
@@ -31,20 +47,28 @@
 
     <footer class="foot_container">
         <div class="foot_contact">
-            <p>Encuentranos en:</p>
-            <img clas="logo_facebook" src="~/Images/facebook.svg" alt="Facebook" />
-            <img clas="logo_twitter" src="~/Images/twitter.svg" alt="Twitter" />
-            <img clas="logo_instagram" src="~/Images/instagram.svg" alt="Instagram" />
+            <p>Encuéntranos en:</p>
+            <div class="social-icons">
+                <i class="fa-brands fa-square-facebook" style="color: #000000;"></i>
+                <i class="fa-brands fa-square-x-twitter" style="color: #000000;"></i>
+                <i class="fa-brands fa-square-instagram" style="color: #000000;"></i>
+            </div>
         </div>
         <div class="copy">
             <p>Copyright© 2023</p>
         </div>
         <div>
-            @Html.ActionLink("Open Library", "Index", "Home", new { area = "" }, new { @class = "logo" })
+            <img src="https://i.imgur.com/Ab8qnan.png" style="max-width: 250px; height: auto;" />
         </div>
     </footer>
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/912086e9de.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+

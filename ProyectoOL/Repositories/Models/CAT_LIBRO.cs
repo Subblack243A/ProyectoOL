@@ -29,7 +29,8 @@ namespace ProyectoOL.Repositories.Models
         public short FK_ESTADO { get; set; }
         public Nullable<int> PRECIO { get; set; }
         public string UBICACION { get; set; }
-        public string URL { get; set; }
+        public string IMAGEN { get; set; }
+        public string PDF { get; set; }
     
         public virtual CAT_ESTADO CAT_ESTADO { get; set; }
         public virtual CAT_GENERO CAT_GENERO { get; set; }

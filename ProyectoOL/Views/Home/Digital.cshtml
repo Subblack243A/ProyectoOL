@@ -1,64 +1,71 @@
-﻿
+﻿@model ProyectoOL.Dto.UserDto
+
 @{
-    ViewBag.Title = "Digital";
+    ViewBag.Title = "Registrar usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    /* Agrega la fuente 'Josefin Sans' al encabezado HTML */
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans" >
 
-<div class="container">
-    <h1 class="mt-4 text-center" style="font-style: italic;">Open Library</h1>
+    body, h1, p {
+        font-family: 'Josefin Sans', sans-serif;
+    }
 
+    .espacio-vertical {
+        margin-bottom: 3rem; /* Espacio vertical entre la imagen y el texto */
+    }
 
-    <!-- Barra de búsqueda -->
-    <div class="input-group my-4">
-        <input type="text" class="form-control rounded-pill" placeholder="Buscar libros">
-        <button class="btn btn-primary" type="button">Buscar</button>
-    </div>
+    .descripcion {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 25px; /* Tamaño de la fuente para la descripción */
+    }
+    .libray{
+        margin-top: 3rem;
+    }
 
-    <!-- Diseño de tarjetas (4 columnas y 3 filas) -->
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card">
-                <img src="imagen-libro-1.jpg" class="card-img-top" alt="Libro 1">
-                <div class="card-body">
-                    <h5 class="card-title">Libro 1</h5>
-                    <p class="card-text">Descripción del libro 1.</p>
-                    <a href="#" class="btn btn-primary">Ver detalles</a>
-                </div>
+    .imagen-container {
+        position: relative;
+    }
+
+        .imagen-container img {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .imagen-container.expandida img {
+            transform: scale(1.2);
+        }
+</style>
+
+<section class="cuerpo_registro">
+    <div class="container">
+        <div class="libray">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h1 class="titulo-josefin">Open Library - Biblioteca Digital</h1>
+                <p class="texto-josefin-bold descripcion">
+                    Open Library es una innovadora biblioteca en línea que utiliza la plataforma .NET para brindar a los amantes de la lectura una experiencia única. Esta plataforma revoluciona la forma en que disfrutamos de los libros, permitiéndonos acceder a ellos de manera cómoda y eficiente. A través de Open Library, los usuarios pueden explorar, adquirir y solicitar libros en línea, demostrando cómo la tecnología puede mejorar la gestión y accesibilidad de los tesoros literarios en la era digital.
+                </p>
             </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card">
-                <img src="imagen-libro-2.jpg" class="card-img-top" alt="Libro 2">
-                <div class="card-body">
-                    <h5 class="card-title">Libro 2</h5>
-                    <p class="card-text">Descripción del libro 2.</p>
-                    <a href="#" class="btn btn-primary">Ver detalles</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card">
-                <img src="imagen-libro-3.jpg" class="card-img-top" alt="Libro 3">
-                <div class="card-body">
-                    <h5 class="card-title">Libro 3</h5>
-                    <p class="card-text">Descripción del libro 3.</p>
-                    <a href="#" class="btn btn-primary">Ver detalles</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card">
-                <img src="imagen-libro-4.jpg" class="card-img-top" alt="Libro 4">
-                <div class="card-body">
-                    <h5 class="card-title">Libro 4</h5>
-                    <p class="card-text">Descripción del libro 4.</p>
-                    <a href="#" class="btn btn-primary">Ver detalles</a>
+            <div class="col-md-12 text-center espacio-vertical">
+                <div class="imagen-container">
+                    <img src="https://i.imgur.com/82PHcgo.jpg" alt="Imagen de Open Library" width="500" />
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<script>
+    // Script para hacer que la imagen se expanda brevemente al hacer clic
+    const imagenContainer = document.querySelector(".imagen-container");
+    const imagen = imagenContainer.querySelector("img");
+
+    imagen.addEventListener("click", function () {
+        imagenContainer.classList.add("expandida");
+        setTimeout(() => {
+            imagenContainer.classList.remove("expandida");
+        }, 250); // Ajusta el tiempo en milisegundos.
+    });
+</script>
