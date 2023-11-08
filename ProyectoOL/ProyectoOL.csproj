@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrarianController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Utilities\EncryptUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Dashboard.css" />
     <Content Include="Content\FootStyle.css" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Login.css" />
@@ -249,12 +251,13 @@
     <Content Include="Views\Librarian\People.cshtml" />
     <Content Include="Views\Librarian\Index.cshtml" />
     <Content Include="Views\Librarian\Books.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\cs\" />
     <Folder Include="Scripts\js\" />
-    <Folder Include="Views\Bibliotecario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

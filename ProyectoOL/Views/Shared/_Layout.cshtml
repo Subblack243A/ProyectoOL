@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - OpenLibrary</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +40,7 @@
         <nav class="barra">
             <ul class="menu_login d-flex align-items-center list-unstyled">
                 <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
-                <li>@Html.ActionLink("Biblioteca Digital", "Digital", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
+                <li>@Html.ActionLink("Sobre nosotros", "Digital", "Home", new { area = "" }, new { @class = "menu_login_item" })</li>
                 <li><a href="@Url.Action("Register", "User", new { area = "" })" class="btn btn-primary">Registrarse</a></li>
                 <li class="mx-2"></li>
                 <li><a href="@Url.Action("InicioSesion", "User", new { area = "" })" class="btn btn-primary">Ingresar</a></li>

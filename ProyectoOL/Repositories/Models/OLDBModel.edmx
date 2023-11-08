@@ -45,6 +45,7 @@
           <Property Name="IMAGEN" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="PDF" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="SINOPSIS" Type="nvarchar" MaxLength="255" Nullable="false" />
+
         </EntityType>
         <EntityType Name="CAT_TIPO_DOCUMENTO">
           <Key>

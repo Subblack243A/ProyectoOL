@@ -1,36 +1,25 @@
 ﻿
 @model ProyectoOL.Dto.UserDto
 @{
-    ViewBag.Title = "Dashboard" +
-                "";
+    ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/LoginUser.cshtml";
 }
 
-<h2>Dashboard</h2>
-
-@if (Model.Id_Usuario != 0)
-{
-    <div class="text-bg-info">
-        @Html.DisplayFor(model => model.Message)
-    </div>
-
-    if (Model.Tipo_Usuario == 1)
+<div class="welcome-container">
+    @if (Model.Id_Usuario == 1)
     {
-        <h3>Bienvenido Admin</h3>
-        <br />
-        <h4>@Html.DisplayFor(model => model.Nombre)</h4>
+        <h3 class="welcome-title">Bienvenido Administrador</h3>
+    }
+    else if (Model.Id_Usuario == 2)
+    {
+        <h3 class="welcome-title">Bienvenido Bibliotecario</h3>
+    }
+    else
+    {
+        <h3 class="welcome-title">Bienvenido Usuario</h3>
     }
 
-    if (Model.Tipo_Usuario == 2)
-    {
-        <h3>Bienvenido Usuario</h3>
-        <br />
-        <h4>@Html.DisplayFor(model => model.Nombre)</h4>
-    }
-}
-else
-{
-    <div class="text-bg-danger">
-        @Html.DisplayFor(model => model.Message)
-    </div>
-}
+    <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
+</div>
+
+

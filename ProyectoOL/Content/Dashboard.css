@@ -1,0 +1,25 @@
+﻿/* Estilos para el div de bienvenida */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 82vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #DBD3D0; /* Fondo con el color deseado */
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 25px;
+}
+
+/* Estilos para el título h3 */
+.welcome-title {
+    font-size: 72px;
+    color: #6768AB; /* Cambia el color a tu preferencia */
+    font-weight: 600;
+}
+
+/* Estilos para el nombre h4 */
+.welcome-name {
+    font-size: 48px;
+    font-weight: 600;
+    color: #562a00; /* Cambia el color a tu preferencia */
+}

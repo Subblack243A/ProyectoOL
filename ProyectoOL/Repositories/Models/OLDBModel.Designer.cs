@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\osfel\OneDrive - UNIVERSIDAD DE CUNDINAMARCA\IIPA23\Ing. Software\ProyectoOL\ProyectoOL\Repositories\Models\OLDBModel.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\juan_\source\Repos\OpenLibrary\ProyectoOL\Repositories\Models\OLDBModel.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.
