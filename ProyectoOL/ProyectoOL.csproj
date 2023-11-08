@@ -133,11 +133,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrarianController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\BookDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\Models\AUDITORIA.cs">
       <DependentUpon>OLDBModel.tt</DependentUpon>
     </Compile>
@@ -187,6 +189,7 @@
       <DependentUpon>OLDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\BooksService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Utilities\EmailUtility.cs" />
     <Compile Include="Utilities\EncryptUtility.cs" />
@@ -252,9 +255,9 @@
     <Content Include="Views\Home\Digital.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\DigitalLibrary.cshtml" />
-    <Content Include="Views\Librarian\Index.cshtml" />
-    <Content Include="Views\Librarian\Books.cshtml" />
     <Content Include="Views\Librarian\People.cshtml" />
+    <Content Include="Views\Librarian\Books.cshtml" />
+    <Content Include="Views\Librarian\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
