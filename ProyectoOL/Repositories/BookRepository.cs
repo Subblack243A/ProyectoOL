@@ -20,7 +20,7 @@ namespace ProyectoOL.Repositories
                         FECHA = book.Fecha,
                         FK_ESTADO = 4,
                         FK_GENERO = 1,
-                        URL = book.Url
+                        PDF = book.Url
                     };
                     db.CAT_LIBRO.Add(tBook);
                     db.SaveChanges();

@@ -4,29 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfc40d1917894ba394533c80758b79e3" Name="Diagram1">
-        <EntityTypeShape EntityType="OLDBModel.AUDITORIA" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.CAT_ESTADO" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.CAT_GENERO" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.CAT_LIBRO" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.CAT_TIPO_DOCUMENTO" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.CAT_TIPO_USUARIO" Width="1.5" PointX="3.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.COMPRA" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.MULTA" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.PANTALLA" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.PRESTAMO" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLDBModel.USUARIO" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+      <Diagram DiagramId="af664ba9d406490eb17177f2501ab054" Name="Diagram1">
+        <EntityTypeShape EntityType="OLDBModel.AUDITORIA" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.CAT_ESTADO" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.CAT_GENERO" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.CAT_LIBRO" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.CAT_TIPO_DOCUMENTO" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.CAT_TIPO_USUARIO" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.PANTALLA" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLDBModel.USUARIO" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
         <AssociationConnector Association="OLDBModel.FK_CAT_LIBRO_CAT_ESTADO" ManuallyRouted="false" />
         <AssociationConnector Association="OLDBModel.FK_USUARIO_CAT_ESTADO" ManuallyRouted="false" />
         <AssociationConnector Association="OLDBModel.FK_CAT_LIBRO_CAT_GENERO" ManuallyRouted="false" />
-        <AssociationConnector Association="OLDBModel.FK_COMPRA_CAT_LIBRO" ManuallyRouted="false" />
-        <AssociationConnector Association="OLDBModel.FK_PRESTAMO_CAT_LIBRO" ManuallyRouted="false" />
         <AssociationConnector Association="OLDBModel.FK_USUARIO_CAT_TIPO_DOCUMENTO" ManuallyRouted="false" />
         <AssociationConnector Association="OLDBModel.FK_USUARIO_CAT_TIPO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OLDBModel.FK_COMPRA_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OLDBModel.FK_MULTA_PRESTAMO" ManuallyRouted="false" />
         <AssociationConnector Association="OLDBModel.FK_PANTALLA_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OLDBModel.FK_PRESTAMO_USUARIO" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
