@@ -18,14 +18,16 @@ namespace ProyectoOL.Repositories
                         NOMBRE_LIBRO = book.Nombre_Libro,
                         AUTOR = book.Autor,
                         FECHA = book.Fecha,
-                        FK_ESTADO = 4,
-                        FK_GENERO = 1,
-                        PDF = book.Url
+                        FK_ESTADO = (short)4,
+                        FK_GENERO = book.Fk_Genero,
+                        PDF = book.Pdf,
+                        SINOPSIS = book.Descripcion,
+                        IMAGEN = book.Imagen
                     };
                     db.CAT_LIBRO.Add(tBook);
                     db.SaveChanges();
+                    return 0;
                 }
-                return 0;
             }
             catch (Exception ex)
             {

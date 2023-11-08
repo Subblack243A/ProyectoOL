@@ -247,8 +247,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\DigitalLibrary.cshtml" />
     <Content Include="Views\Librarian\People.cshtml" />
-    <Content Include="Views\Librarian\Books.cshtml" />
     <Content Include="Views\Librarian\Index.cshtml" />
+    <Content Include="Views\Librarian\Books.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,9 +1,5 @@
 ﻿using ProyectoOL.Dtos;
 using ProyectoOL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ProyectoOL.Services
 {
@@ -32,7 +28,7 @@ namespace ProyectoOL.Services
             book.Autor = null;
             book.Fk_Estado = 0;
             book.Imagen = null;
-            book.Url = null;
+            book.Pdf = null;
             book.Indice = 0;
             return book;
         }

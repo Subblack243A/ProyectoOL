@@ -1,8 +1,4 @@
 ﻿
-using Newtonsoft.Json;
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace ProyectoOL.Dtos
 {
     public class BookDto
@@ -13,7 +9,7 @@ namespace ProyectoOL.Dtos
 
         public string Autor { get; set;} = string.Empty;
 
-        public DateTime Fecha {  get; set;}
+        public string Fecha {  get; set;}
 
         public short Fk_Genero {  get; set; }
 
@@ -21,8 +17,9 @@ namespace ProyectoOL.Dtos
 
         public string Imagen { get; set; } = string.Empty;
 
-        public string Url { get; set; } = string.Empty;
+        public string Pdf { get; set; } = string.Empty;
 
+        public string Descripcion { get; set; } = string.Empty;
         public int Indice {  get; set; }
     }
 }

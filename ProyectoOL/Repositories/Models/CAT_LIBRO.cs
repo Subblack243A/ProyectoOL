@@ -17,11 +17,12 @@ namespace ProyectoOL.Repositories.Models
         public int ID_LIBRO { get; set; }
         public string NOMBRE_LIBRO { get; set; }
         public string AUTOR { get; set; }
-        public Nullable<System.DateTime> FECHA { get; set; }
+        public string FECHA { get; set; }
         public Nullable<short> FK_GENERO { get; set; }
         public short FK_ESTADO { get; set; }
         public string IMAGEN { get; set; }
         public string PDF { get; set; }
+        public string SINOPSIS { get; set; }
     
         public virtual CAT_ESTADO CAT_ESTADO { get; set; }
         public virtual CAT_GENERO CAT_GENERO { get; set; }
