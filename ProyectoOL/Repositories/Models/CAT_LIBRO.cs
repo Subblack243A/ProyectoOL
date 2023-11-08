@@ -14,29 +14,17 @@ namespace ProyectoOL.Repositories.Models
     
     public partial class CAT_LIBRO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CAT_LIBRO()
-        {
-            this.COMPRAs = new HashSet<COMPRA>();
-            this.PRESTAMOes = new HashSet<PRESTAMO>();
-        }
-    
         public int ID_LIBRO { get; set; }
         public string NOMBRE_LIBRO { get; set; }
         public string AUTOR { get; set; }
-        public Nullable<System.DateTime> FECHA { get; set; }
+        public string FECHA { get; set; }
         public Nullable<short> FK_GENERO { get; set; }
         public short FK_ESTADO { get; set; }
-        public Nullable<int> PRECIO { get; set; }
-        public string UBICACION { get; set; }
         public string IMAGEN { get; set; }
         public string PDF { get; set; }
+        public string SINOPSIS { get; set; }
     
         public virtual CAT_ESTADO CAT_ESTADO { get; set; }
         public virtual CAT_GENERO CAT_GENERO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMPRA> COMPRAs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRESTAMO> PRESTAMOes { get; set; }
     }
 }

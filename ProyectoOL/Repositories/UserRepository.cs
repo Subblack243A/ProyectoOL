@@ -15,7 +15,7 @@ namespace ProyectoOL.Repositories
             {
                 using (OLDBEntities1 db = new OLDBEntities1())
                 {
-                    var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
+                    var userVal = db.USUARIO.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
                     if (userVal != null)
                     {
                         return 0;
@@ -40,8 +40,8 @@ namespace ProyectoOL.Repositories
                             PANTALLA1 = user.KeySafe,
                             MONITOR = user.Iv
                         };
-                        db.USUARIOs.Add(tUser);
-                        db.PANTALLAs.Add(tPantalla);
+                        db.USUARIO.Add(tUser);
+                        db.PANTALLA.Add(tPantalla);
                         db.SaveChanges();
                         return 1;
                     }
@@ -63,7 +63,7 @@ namespace ProyectoOL.Repositories
 
             using(OLDBEntities1 db = new OLDBEntities1())
             {
-                TUsuario = (from u in db.USUARIOs
+                TUsuario = (from u in db.USUARIO
                 where u.NOMBRE_USUARIO == user.Nombre_Usuario && u.CONTRASENA == user.Contrasena
                 select u).FirstOrDefault();
             } 
@@ -91,7 +91,7 @@ namespace ProyectoOL.Repositories
             var TPantalla = new PANTALLA();
             using (OLDBEntities1 db = new OLDBEntities1())
             {
-                TUsuario = (from d in db.USUARIOs
+                TUsuario = (from d in db.USUARIO
                             where d.NOMBRE_USUARIO == user.Nombre_Usuario
                             select d).FirstOrDefault();
             }
@@ -101,7 +101,7 @@ namespace ProyectoOL.Repositories
             }
             using (OLDBEntities1 db = new OLDBEntities1())
             {
-                TPantalla = (from p in db.PANTALLAs
+                TPantalla = (from p in db.PANTALLA
                 where p.FK_USUARIO == usuario.Id_Usuario
                 select p).FirstOrDefault();
             }

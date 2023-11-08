@@ -17,9 +17,7 @@ namespace ProyectoOL.Repositories.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USUARIO()
         {
-            this.COMPRAs = new HashSet<COMPRA>();
-            this.PANTALLAs = new HashSet<PANTALLA>();
-            this.PRESTAMOes = new HashSet<PRESTAMO>();
+            this.PANTALLA = new HashSet<PANTALLA>();
         }
     
         public int ID_USUARIO { get; set; }
@@ -36,10 +34,6 @@ namespace ProyectoOL.Repositories.Models
         public virtual CAT_TIPO_DOCUMENTO CAT_TIPO_DOCUMENTO { get; set; }
         public virtual CAT_TIPO_USUARIO CAT_TIPO_USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMPRA> COMPRAs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PANTALLA> PANTALLAs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRESTAMO> PRESTAMOes { get; set; }
+        public virtual ICollection<PANTALLA> PANTALLA { get; set; }
     }
 }

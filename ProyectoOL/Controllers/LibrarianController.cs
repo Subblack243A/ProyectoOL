@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoOL.Dtos;
+using ProyectoOL.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +16,28 @@ namespace ProyectoOL.Controllers
             return View();
         }
 
+        //GET: Books
         public ActionResult Books() 
         {
             return View();
+        }
+
+        //POST: Books
+        [HttpPost]
+        public ActionResult Books(BookDto book)
+        {
+            BookDto bookDto = new BookDto();    
+            BooksService bookS = new BooksService();
+            bookDto = bookS.CreateBook(book);
+            if(bookDto.Indice == 1) 
+            {
+                return RedirectToAction("Index", "Librarian");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         public ActionResult People()
         {
