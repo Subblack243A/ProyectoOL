@@ -1,6 +1,7 @@
 ﻿using ProyectoOL.Dtos;
 using ProyectoOL.Repositories.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ProyectoOL.Repositories
@@ -31,9 +32,35 @@ namespace ProyectoOL.Repositories
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message;
+                Console.WriteLine(ex.Message);
                 return 1;
             }
+        }
+
+        public List<BookDto> GetAllBooks() { 
+            List<BookDto> books = new List<BookDto>();
+            BookDto book;
+            using (OLDBEntities db = new OLDBEntities())
+            {
+               var tBooks = db.CAT_LIBRO.ToList();
+                foreach (var tBook in tBooks)
+                {
+                    book = new BookDto()
+                    {
+                        Id_Libro = tBook.ID_LIBRO,
+                        Autor = tBook.AUTOR,
+                        Nombre_Libro = tBook.NOMBRE_LIBRO,
+                        Fecha = tBook.FECHA,
+                        Fk_Genero = (short)tBook.FK_GENERO,
+                        Fk_Estado = tBook.FK_ESTADO,
+                        Imagen = tBook.IMAGEN,
+                        Pdf = tBook.PDF,
+                        Descripcion = tBook.SINOPSIS
+                    };
+                    books.Add(book);
+                }
+            }
+            return books;
         }
     }
 }

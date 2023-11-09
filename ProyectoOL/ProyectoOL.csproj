@@ -205,10 +205,6 @@
       <DependentUpon>OLDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Images\biblioteca.png" />
-    <Content Include="Images\facebook.svg" />
-    <Content Include="Images\twitter.svg" />
-    <Content Include="Images\instagram.svg" />
     <Content Include="Repositories\Models\OLDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OLDBModel.edmx</DependentUpon>
@@ -246,12 +242,12 @@
     <Content Include="Views\User\Dashboard.cshtml" />
     <Content Include="Views\Shared\LoginUser.cshtml" />
     <Content Include="Views\Home\Digital.cshtml" />
-    <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\DigitalLibrary.cshtml" />
     <Content Include="Views\Librarian\People.cshtml" />
     <Content Include="Views\Librarian\Index.cshtml" />
     <Content Include="Views\Librarian\Books.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Shared\LoginLibrarian.cshtml" />
   </ItemGroup>
   <ItemGroup>
