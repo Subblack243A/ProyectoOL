@@ -248,6 +248,7 @@
     <Content Include="Views\Librarian\Books.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Shared\LoginLibrarian.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,8 +1,40 @@
-﻿
+﻿@model ProyectoOL.Dtos.BookDto
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/LoginUser.cshtml";
+    ViewBag.Title = "Inicio de Sesión Exitoso";
+    Layout = "~/Views/Shared/LoginLibrarian.cshtml"; // Asegúrate de usar la ruta correcta para tu Layout.
 }
 
-<h2>Index</h2>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Josefin Sans', sans-serif;
+        flex-direction: column;
+        text-align: center;
+    }
 
+    .description {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    .btn-container {
+        display: flex;
+        align-items: center;
+    }
+
+        .btn-container .btn {
+            margin-left: 10px;
+        }
+</style>
+
+<div class="container">
+    <h2>Bienvenido, Bibliotecario</h2>
+    <p class="description">Has iniciado sesión exitosamente en Open Library. A continuación, puedes registrar libros.</p>
+
+    <div class="btn-container">
+        @Html.ActionLink("Registrar Libros", "Books", "Librarian", new { area = "" }, new { @class = "btn btn-primary" })
+    </div>
+</div>
