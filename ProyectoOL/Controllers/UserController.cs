@@ -6,6 +6,7 @@ using System.Web.Security;
 
 namespace ProyectoOL.Controllers
 {
+    [HandleError]
     public class UserController : Controller
     {
         UserDto userLogin = new UserDto();

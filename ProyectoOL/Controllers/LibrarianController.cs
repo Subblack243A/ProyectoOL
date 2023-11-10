@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
+    [HandleError]
     public class LibrarianController : Controller
     {
 

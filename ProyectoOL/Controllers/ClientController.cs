@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
+    [HandleError]
     public class ClientController : Controller
     {
     [Authorize]
