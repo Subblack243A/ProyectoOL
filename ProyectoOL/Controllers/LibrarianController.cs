@@ -10,13 +10,9 @@ namespace ProyectoOL.Controllers
 {
     public class LibrarianController : Controller
     {
-        // GET: Librarian
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         //GET: Books
+        [Authorize]
         public ActionResult Books() 
         {
             return View();
@@ -24,6 +20,7 @@ namespace ProyectoOL.Controllers
 
         //POST: Books
         [HttpPost]
+        [Authorize]
         public ActionResult Books(BookDto book)
         {
             BookDto bookDto = new BookDto();    
@@ -31,17 +28,13 @@ namespace ProyectoOL.Controllers
             bookDto = bookS.CreateBook(book);
             if(bookDto.Indice == 1) 
             {
-                return RedirectToAction("Index", "Librarian");
+                return RedirectToAction("Books", "Librarian");
             }
             else
             {
                 return View();
             }
             
-        }
-        public ActionResult People()
-        {
-            return View();
         }
     }
 }

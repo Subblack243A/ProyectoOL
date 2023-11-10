@@ -4,85 +4,71 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LoginUser.cshtml";
 }
+<div class="cuerpo_final">
+    <center><h2 class="titulo_morado" style="padding-top: 2rem; padding-bottom:2rem;">Libros</h2></center>
 
-<h2>Index</h2>
+    <table class="table table-secondary">
+        <tr>
+            <th>
+                <center><h3 class="titulo_oscuro">Imágen</h3></center>
+            </th>
+            <th>
+                <center><h3 class="titulo_oscuro">Información</h3></center>
+            </th>
+            <th>
+                <center><h3 class="titulo_oscuro">Link</h3></center>
+            </th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Libro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre_Libro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fk_Genero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fk_Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pdf)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Indice)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="imagen">
+                    <img src="@item.Imagen" alt="Imagen_libro" class="libro" />
+                </td>
+                <td class="info">
+                    <h5>Titulo: </h5>
+                    @Html.DisplayFor(modelItem => item.Nombre_Libro)
+                    <p></p>
+                    <h5>Autor:</h5>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                    <p></p>
+                    <h5>Fecha de Publicación:</h5>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                    <p></p>
+                    <h5>Género</h5>
+                    @if(item.Fk_Genero == 1)
+                    {
+                        <p>Acción</p>
+                    }else if (item.Fk_Genero == 2)
+                    {
+                        <p>Terror</p>
+                    }else if (item.Fk_Genero == 6)
+                    {
+                        <p>Ingeniería</p>
+                    }else if(item.Fk_Genero == 3)
+                    {
+                        <p>Romance</p>
+                    }else if(item.Fk_Genero == 4)
+                    {
+                        <p>Comedia</p>
+                    }else if(item.Fk_Genero == 5)
+                    {
+                        <p>Drama</p>
+                    }else if(item.Fk_Genero == 7)
+                    {
+                        <p>Ciencias</p>
+                    }
+                    <p></p>
+                    <h5>Sinópsis</h5>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td class="leer">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Libro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_Libro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fk_Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fk_Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pdf)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Indice)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+                    <center><a href="@item.Pdf" class="btn btn-primary move">Leer y Descargar</a></center>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

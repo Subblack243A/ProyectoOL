@@ -86,6 +86,7 @@
                 <div class="form-input">
                     @Html.DropDownListFor(model => model.Fk_Genero, new List<SelectListItem>
                     {
+                        new SelectListItem { Text = "Ninguno", Value=  "8"},
                         new SelectListItem { Text = "Acción", Value = "1" },
                         new SelectListItem { Text = "Terror", Value = "2" },
                         new SelectListItem { Text = "Romance", Value = "3" },

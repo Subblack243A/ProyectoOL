@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ProyectoOL.Controllers
 {
@@ -7,6 +8,7 @@ namespace ProyectoOL.Controllers
     {
         public ActionResult Index()
         {
+            FormsAuthentication.SignOut();
             return View();
         }
 

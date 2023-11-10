@@ -1,0 +1,36 @@
+﻿.libro {
+    max-width:14rem;
+}
+
+.titulo_oscuro{
+    font-family: Josefin Sans, italian;
+    font-weight: 900;
+}
+
+.titulo_morado {
+    font-family: Josefin Sans, italian;
+    font-weight: 600;
+    color: #6768AB;
+    font-size: 4rem;
+    padding-top: 3rem;
+}
+
+.cuerpo_final {
+    background-color: #E2E3E5;
+}
+
+.imagen {
+    border-left: 2rem;
+}
+
+.info{
+    width: 40rem;
+}
+
+.leer{
+    width: 20rem;
+}
+
+.move{
+    margin-top: 8rem;
+}

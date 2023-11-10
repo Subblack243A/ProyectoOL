@@ -2,6 +2,7 @@
 using ProyectoOL.Repositories.Models;
 using System.Linq;
 using System;
+using System.Web.Mvc;
 
 namespace ProyectoOL.Repositories
 {
@@ -20,13 +21,17 @@ namespace ProyectoOL.Repositories
                     }
                     else
                     {
+                        if (user.Tipo_Usuario == 0)
+                        {
+                            user.Tipo_Usuario = 2;
+                        }
                         USUARIO tUser = new USUARIO
                         {
                             FK_ESTADO = 2,
                             ID_USUARIO = user.Id_Usuario,
                             NOMBRE_USUARIO = user.Nombre_Usuario,
                             FK_TIPO_DOCUMENTO = user.Tipo_Documento,
-                            FK_TIPO_USUARIO = 2,
+                            FK_TIPO_USUARIO = user.Tipo_Usuario,
                             NOMBRE = user.Nombre,
                             APELLIDO = user.Apellido,
                             CORREO_ELECTRONICO = user.Correo_Electronico,

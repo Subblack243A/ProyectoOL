@@ -1,25 +1,26 @@
-﻿
-@model ProyectoOL.Dto.UserDto
+﻿@model ProyectoOL.Dto.UserDto
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/LoginUser.cshtml";
 }
 
 <div class="welcome-container">
-    @if (Model.Id_Usuario == 1)
-    {
-        <h3 class="welcome-title">Bienvenido Administrador</h3>
-    }
-    else if (Model.Id_Usuario == 2)
-    {
-        <h3 class="welcome-title">Bienvenido Bibliotecario</h3>
-    }
-    else
-    {
-        <h3 class="welcome-title">Bienvenido Usuario</h3>
-    }
-
-    <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
+        @if (Model.Tipo_Usuario == 1)
+        {
+            <h3 class="welcome-title">Bienvenido Administrador</h3>
+            <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
+            <center>@Html.ActionLink("Registrar Usuarios", "RegisterAdmin", "User", new { @class = "btn btn-primary" })</center>
+        }
+        else if (Model.Tipo_Usuario == 3)
+        {
+            <h3 class="welcome-title">Bienvenido Bibliotecario</h3>
+            <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
+            <center><a href="@Url.Action("Books", "Librarian", new { area = "" })" class="btn btn-primary">Registrar Libros</a></center>
+        }
+        else
+        {
+            <h3 class="welcome-title">Bienvenido Usuario</h3>
+            <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
+            <center><a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a></center>
+        }
 </div>
-
-

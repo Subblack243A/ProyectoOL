@@ -12,7 +12,7 @@ namespace ProyectoOL.Repositories
         {
             try
             {
-                using (OLDBEntities1 db = new OLDBEntities1())
+                using (OLDBEntities db = new OLDBEntities())
                 {
                     CAT_LIBRO tBook = new CAT_LIBRO
                     {
