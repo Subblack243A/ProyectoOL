@@ -1,10 +1,8 @@
 ﻿using ProyectoOL.Dto;
 using ProyectoOL.Permissions;
-using ProyectoOL.Repositories.Models;
 using ProyectoOL.Services;
 using ProyectoOL.Utilities;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace ProyectoOL.Controllers
 {
@@ -15,14 +13,19 @@ namespace ProyectoOL.Controllers
         [Authorize, RolPermissions(true, true, true)]
         public ActionResult uUser()
         {
-            UserDto user = (UserDto)Session["User"];
-            user.Contrasena = null;
-            return View(user);
+            userLogin = (UserDto)Session["User"];
+            userLogin.Contrasena = null;
+            return View(userLogin);
         }
 
         [HttpPost, RolPermissions(true, true, true), Authorize]
         public ActionResult uUser(UserDto user)
         {
+            if(user == null)
+            {
+                user = (UserDto)Session["User"];
+                user.Contrasena = null;
+            }
             EmailUtility email = new EmailUtility();
             UserService userService = new UserService();
             if (user.Contrasena == null) 
