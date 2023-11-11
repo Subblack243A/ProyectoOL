@@ -30,7 +30,6 @@ namespace ProyectoOL.Controllers
             UserDto userRegister = userService.CreateUser(user);
             if (userRegister.Id_Usuario != -1)
             {
-                user = userService.CleanUser(user);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -72,7 +71,6 @@ namespace ProyectoOL.Controllers
             UserDto userRegister = userService.CreateUser(user);
             if (userRegister.Id_Usuario != -1)
             {
-                user = userService.CleanUser(user);
                 return RedirectToAction("RegisterAdmin", "User");
             }
             else

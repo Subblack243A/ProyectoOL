@@ -23,9 +23,8 @@ namespace ProyectoOL.Controllers
         [RolPermissions(true, false, true)]
         public ActionResult Books(BookDto book)
         {
-            BookDto bookDto = new BookDto();    
             BooksService bookS = new BooksService();
-            bookDto = bookS.CreateBook(book);
+            BookDto bookDto = bookS.CreateBook(book);
             if(bookDto.Indice == 1) 
             {
                 return RedirectToAction("Books", "Librarian");

@@ -2,6 +2,9 @@
 using ProyectoOL.Repositories.Models;
 using System.Linq;
 using System;
+using System.Web.Mvc;
+using System.Data.Entity;
+
 
 namespace ProyectoOL.Repositories
 {
@@ -14,59 +17,108 @@ namespace ProyectoOL.Repositories
                 using (OLDBEntities db = new OLDBEntities())
                 {
                     var userVal = db.USUARIO.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
-                    if (userVal != null)
+                    if (user.Message.Equals("1") || user.Message.Equals("2"))
                     {
-                        return 0;
-                    }
-                    else
-                    {
+
+
                         if (user.Tipo_Usuario == 0)
                         {
                             user.Tipo_Usuario = 2;
                         }
                         if (user.Message.Equals("1"))
                         {
-                            USUARIO tUser = new USUARIO
-                            {
-                                FK_ESTADO = 2,
-                                ID_USUARIO = user.Id_Usuario,
-                                NOMBRE_USUARIO = user.Nombre_Usuario,
-                                FK_TIPO_DOCUMENTO = user.Tipo_Documento,
-                                FK_TIPO_USUARIO = user.Tipo_Usuario,
-                                NOMBRE = user.Nombre,
-                                APELLIDO = user.Apellido,
-                                CORREO_ELECTRONICO = user.Correo_Electronico
-                            };
-                            db.USUARIO.Add(tUser);
+                            var valUser = db.USUARIO.FirstOrDefault(f => f.ID_USUARIO == user.Id_Usuario);
+
+                            valUser.FK_ESTADO = 2;
+                            valUser.ID_USUARIO = user.Id_Usuario;
+                            valUser.NOMBRE_USUARIO = user.Nombre_Usuario;
+                            valUser.FK_TIPO_USUARIO = user.Tipo_Usuario;
+                            valUser.NOMBRE = user.Nombre;
+                            valUser.APELLIDO = user.Apellido;
+                            valUser.CORREO_ELECTRONICO = user.Correo_Electronico;
+
+                            db.Entry(valUser).State = EntityState.Modified;
+
                             db.SaveChanges();
                         }
                         else
                         {
-                            USUARIO tUser = new USUARIO
-                            {
-                                FK_ESTADO = 2,
-                                ID_USUARIO = user.Id_Usuario,
-                                NOMBRE_USUARIO = user.Nombre_Usuario,
-                                FK_TIPO_DOCUMENTO = user.Tipo_Documento,
-                                FK_TIPO_USUARIO = user.Tipo_Usuario,
-                                NOMBRE = user.Nombre,
-                                APELLIDO = user.Apellido,
-                                CORREO_ELECTRONICO = user.Correo_Electronico,
-                                CONTRASENA = user.Contrasena
-                            };
-                            PANTALLA tPantalla = new PANTALLA
-                            {
-                                FK_USUARIO = user.Id_Usuario,
-                                PANTALLA1 = user.KeySafe,
-                                MONITOR = user.Iv
-                            };
-                            db.USUARIO.Add(tUser);
-                            db.PANTALLA.Add(tPantalla);
+                            var valUser = db.USUARIO.FirstOrDefault(f => f.ID_USUARIO == user.Id_Usuario);
+
+                            valUser.FK_ESTADO = 2;
+                            valUser.NOMBRE_USUARIO = user.Nombre_Usuario;
+                            valUser.FK_TIPO_USUARIO = user.Tipo_Usuario;
+                            valUser.NOMBRE = user.Nombre;
+                            valUser.APELLIDO = user.Apellido;
+                            valUser.CORREO_ELECTRONICO = user.Correo_Electronico;
+
+                            var valPan = db.PANTALLA.FirstOrDefault(f => f.FK_USUARIO == user.Id_Usuario);
+
+                            valPan.PANTALLA1 = user.KeySafe;
+                            valPan.MONITOR = user.Iv;
+
+                            db.Entry(valPan).State = EntityState.Modified;
+                            db.Entry(valUser).State = EntityState.Modified;
                             db.SaveChanges();
                         }
-                        
-                        return 1;
+
                     }
+                    else
+                    {
+                        if (userVal != null)
+                        {
+                            return 0;
+                        }
+                        else
+                        {
+                            if (user.Tipo_Usuario == 0)
+                            {
+                                user.Tipo_Usuario = 2;
+                            }
+                            if (user.Message.Equals("1"))
+                            {
+                                USUARIO tUser = new USUARIO
+                                {
+                                    FK_ESTADO = 2,
+                                    ID_USUARIO = user.Id_Usuario,
+                                    NOMBRE_USUARIO = user.Nombre_Usuario,
+                                    FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                                    FK_TIPO_USUARIO = user.Tipo_Usuario,
+                                    NOMBRE = user.Nombre,
+                                    APELLIDO = user.Apellido,
+                                    CORREO_ELECTRONICO = user.Correo_Electronico
+                                };
+                                db.USUARIO.Add(tUser);
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                USUARIO tUser = new USUARIO
+                                {
+                                    FK_ESTADO = 2,
+                                    ID_USUARIO = user.Id_Usuario,
+                                    NOMBRE_USUARIO = user.Nombre_Usuario,
+                                    FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                                    FK_TIPO_USUARIO = user.Tipo_Usuario,
+                                    NOMBRE = user.Nombre,
+                                    APELLIDO = user.Apellido,
+                                    CORREO_ELECTRONICO = user.Correo_Electronico,
+                                    CONTRASENA = user.Contrasena
+                                };
+                                PANTALLA tPantalla = new PANTALLA
+                                {
+                                    FK_USUARIO = user.Id_Usuario,
+                                    PANTALLA1 = user.KeySafe,
+                                    MONITOR = user.Iv
+                                };
+                                db.USUARIO.Add(tUser);
+                                db.PANTALLA.Add(tPantalla);
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+                    return 1;
                 }
             }
             catch (Exception e)
