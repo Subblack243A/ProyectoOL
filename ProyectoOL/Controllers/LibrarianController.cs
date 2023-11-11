@@ -1,10 +1,7 @@
 ﻿using ProyectoOL.Dtos;
+using ProyectoOL.Permissions;
 using ProyectoOL.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+    using System.Web.Mvc;
 
 namespace ProyectoOL.Controllers
 {
@@ -14,6 +11,7 @@ namespace ProyectoOL.Controllers
 
         //GET: Books
         [Authorize]
+        [RolPermissions(true, false, true)]
         public ActionResult Books() 
         {
             return View();
@@ -22,6 +20,7 @@ namespace ProyectoOL.Controllers
         //POST: Books
         [HttpPost]
         [Authorize]
+        [RolPermissions(true, false, true)]
         public ActionResult Books(BookDto book)
         {
             BookDto bookDto = new BookDto();    

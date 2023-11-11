@@ -11,6 +11,7 @@ namespace ProyectoOL.Dtos
 
         public string Autor { get; set;} = string.Empty;
 
+        [Required, MaxLength(10)]
         public string Fecha {  get; set;}
 
         public short Fk_Genero {  get; set; }

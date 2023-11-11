@@ -5,85 +5,45 @@
     Layout = "~/Views/Shared/LoginLibrarian.cshtml";
 }
 
-@{
-    var titleSize = "28px"; /* Tamaño del título */
-    var textSize = "16px"; /* Tamaño del texto del formulario */
-}
 
-<style>
-    .form-container {
-        text-align: center;
-        margin: 0 auto;
-        max-width: 600px;
-        padding: 20px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
 
-    .form-title {
-        font-size: @titleSize; /* Aplicar el tamaño del título personalizado */
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        text-align: left;
-        margin-bottom: 15px;
-    }
-
-    .form-label {
-        font-weight: bold;
-        font-size: @textSize; /* Aplicar el tamaño de texto personalizado */
-    }
-
-    .form-input {
-        text-align: left;
-    }
-
-    .form-control {
-        width: 60%;
-    }
-
-    .form-actions {
-        margin-top: 20px;
-    }
-</style>
-
-<section class="form-container">
-    <h2 class="form-title">Registra un libro</h2>
+<section class="cuerpo_registro">
+    <h2 class="titulo_oscuro">Registra un libro</h2>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+        <div class="container_registro">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Nombre_Libro, "Nombre del libro:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Nombre_Libro, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Nombre_Libro, "Nombre del libro:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre_Libro, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre del Libro", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Nombre_Libro, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Autor, "Autor:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Autor, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Autor, "Nombre del Autor:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Autor, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre del Autor", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Autor, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Fecha, "Fecha:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Fecha, "Fecha de publicación:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Publicación", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Fk_Genero, "Género:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Fk_Genero, "Género del libro:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Fk_Genero, new List<SelectListItem>
                     {
                         new SelectListItem { Text = "Ninguno", Value=  "8"},
@@ -95,35 +55,35 @@
                         new SelectListItem { Text = "Ingenieria", Value = "6" },
                         new SelectListItem { Text = "Ciencias", Value = "7" },
                     }, new { @class = "form-control", placeholder = "Selecciona un género" })
-                    @Html.ValidationMessageFor(model => model.Fk_Genero, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Fk_Genero, "", new { @class = "text-danger", @required = "required" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Imagen, "URL de la imagen:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Imagen, "URL de la imagen:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control", placeholder = "Link con .png o .jpg", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Pdf, "URL del PDF:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Pdf, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Pdf, "URL del PDF:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Pdf, new { htmlAttributes = new { @class = "form-control", placeholder = "URL del PDF", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Pdf, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Descripcion, "Descripción:", htmlAttributes: new { @class = "form-label" })
-                <div class="form-input">
-                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="espacio_registro">
+                @Html.LabelFor(model => model.Descripcion, "Descripción:", htmlAttributes: new { @class = "control-label custom-space" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control text-final", placeholder = "Máximo 255 carácteres", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="buttons">
                 <div class="form-actions">
                     <input type="submit" value="Crear" class="btn btn-primary">
                 </div>

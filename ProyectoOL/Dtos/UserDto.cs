@@ -30,8 +30,5 @@ namespace ProyectoOL.Dto
         public string KeySafe {  get; set; } = string.Empty;
 
         public string Iv { get; set;} = string.Empty;
-
-        public TipoUsuario rol { get; set; }
-
     }
 }
