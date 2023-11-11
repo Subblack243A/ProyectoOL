@@ -25,13 +25,13 @@ namespace ProyectoOL.Repositories.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AUDITORIA> AUDITORIA { get; set; }
+        public virtual DbSet<AUDITORIA> AUDITORIAs { get; set; }
         public virtual DbSet<CAT_ESTADO> CAT_ESTADO { get; set; }
         public virtual DbSet<CAT_GENERO> CAT_GENERO { get; set; }
         public virtual DbSet<CAT_LIBRO> CAT_LIBRO { get; set; }
         public virtual DbSet<CAT_TIPO_DOCUMENTO> CAT_TIPO_DOCUMENTO { get; set; }
         public virtual DbSet<CAT_TIPO_USUARIO> CAT_TIPO_USUARIO { get; set; }
-        public virtual DbSet<PANTALLA> PANTALLA { get; set; }
-        public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<PANTALLA> PANTALLAs { get; set; }
+        public virtual DbSet<USUARIO> USUARIOs { get; set; }
     }
 }

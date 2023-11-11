@@ -18,7 +18,7 @@ namespace ProyectoOL.Repositories.Models
         public CAT_ESTADO()
         {
             this.CAT_LIBRO = new HashSet<CAT_LIBRO>();
-            this.USUARIO = new HashSet<USUARIO>();
+            this.USUARIOs = new HashSet<USUARIO>();
         }
     
         public short ID_ESTADO { get; set; }
@@ -27,6 +27,6 @@ namespace ProyectoOL.Repositories.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAT_LIBRO> CAT_LIBRO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual ICollection<USUARIO> USUARIOs { get; set; }
     }
 }

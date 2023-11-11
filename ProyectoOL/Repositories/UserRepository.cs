@@ -14,7 +14,7 @@ namespace ProyectoOL.Repositories
             {
                 using (OLDBEntities db = new OLDBEntities())
                 {
-                    var userVal = db.USUARIO.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
+                    var userVal = db.USUARIOs.FirstOrDefault(f => f.NOMBRE_USUARIO == user.Nombre_Usuario);
                     if (userVal != null)
                     {
                         return 0;
@@ -86,7 +86,7 @@ namespace ProyectoOL.Repositories
 
             using(OLDBEntities db = new OLDBEntities())
             {
-                TUsuario = (from u in db.USUARIO
+                TUsuario = (from u in db.USUARIOs
                 where u.NOMBRE_USUARIO == user.Nombre_Usuario && u.CONTRASENA == user.Contrasena
                 select u).FirstOrDefault();
             } 
@@ -114,7 +114,7 @@ namespace ProyectoOL.Repositories
             var TPantalla = new PANTALLA();
             using (OLDBEntities db = new OLDBEntities())
             {
-                TUsuario = (from d in db.USUARIO
+                TUsuario = (from d in db.USUARIOs
                             where d.NOMBRE_USUARIO == user.Nombre_Usuario
                             select d).FirstOrDefault();
             }
@@ -124,7 +124,7 @@ namespace ProyectoOL.Repositories
             }
             using (OLDBEntities db = new OLDBEntities())
             {
-                TPantalla = (from p in db.PANTALLA
+                TPantalla = (from p in db.PANTALLAs
                 where p.FK_USUARIO == usuario.Id_Usuario
                 select p).FirstOrDefault();
             }
