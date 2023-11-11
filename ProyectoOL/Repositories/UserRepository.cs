@@ -25,27 +25,47 @@ namespace ProyectoOL.Repositories
                         {
                             user.Tipo_Usuario = 2;
                         }
-                        USUARIO tUser = new USUARIO
+                        if (user.Message.Equals("1"))
                         {
-                            FK_ESTADO = 2,
-                            ID_USUARIO = user.Id_Usuario,
-                            NOMBRE_USUARIO = user.Nombre_Usuario,
-                            FK_TIPO_DOCUMENTO = user.Tipo_Documento,
-                            FK_TIPO_USUARIO = user.Tipo_Usuario,
-                            NOMBRE = user.Nombre,
-                            APELLIDO = user.Apellido,
-                            CORREO_ELECTRONICO = user.Correo_Electronico,
-                            CONTRASENA = user.Contrasena
-                        };
-                        PANTALLA tPantalla = new PANTALLA
+                            USUARIO tUser = new USUARIO
+                            {
+                                FK_ESTADO = 2,
+                                ID_USUARIO = user.Id_Usuario,
+                                NOMBRE_USUARIO = user.Nombre_Usuario,
+                                FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                                FK_TIPO_USUARIO = user.Tipo_Usuario,
+                                NOMBRE = user.Nombre,
+                                APELLIDO = user.Apellido,
+                                CORREO_ELECTRONICO = user.Correo_Electronico
+                            };
+                            db.USUARIO.Add(tUser);
+                            db.SaveChanges();
+                        }
+                        else
                         {
-                            FK_USUARIO = user.Id_Usuario,
-                            PANTALLA1 = user.KeySafe,
-                            MONITOR = user.Iv
-                        };
-                        db.USUARIOs.Add(tUser);
-                        db.PANTALLAs.Add(tPantalla);
-                        db.SaveChanges();
+                            USUARIO tUser = new USUARIO
+                            {
+                                FK_ESTADO = 2,
+                                ID_USUARIO = user.Id_Usuario,
+                                NOMBRE_USUARIO = user.Nombre_Usuario,
+                                FK_TIPO_DOCUMENTO = user.Tipo_Documento,
+                                FK_TIPO_USUARIO = user.Tipo_Usuario,
+                                NOMBRE = user.Nombre,
+                                APELLIDO = user.Apellido,
+                                CORREO_ELECTRONICO = user.Correo_Electronico,
+                                CONTRASENA = user.Contrasena
+                            };
+                            PANTALLA tPantalla = new PANTALLA
+                            {
+                                FK_USUARIO = user.Id_Usuario,
+                                PANTALLA1 = user.KeySafe,
+                                MONITOR = user.Iv
+                            };
+                            db.USUARIO.Add(tUser);
+                            db.PANTALLA.Add(tPantalla);
+                            db.SaveChanges();
+                        }
+                        
                         return 1;
                     }
                 }

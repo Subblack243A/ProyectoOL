@@ -1,0 +1,44 @@
+﻿@ {
+    var titleSize = "28px"; /* Tamaño del título */
+    var textSize = "16px"; /* Tamaño del texto del formulario */
+}
+
+
+.form-container {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.form-title {
+    font-size: @titleSize; /* Aplicar el tamaño del título personalizado */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: @textSize; /* Aplicar el tamaño de texto personalizado */
+}
+
+.form-input {
+    text-align: left;
+}
+
+.form-control {
+    width: 60%;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.text-final{
+    height: 5rem;
+}

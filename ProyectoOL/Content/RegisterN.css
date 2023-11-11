@@ -2,22 +2,20 @@
 .cuerpo_registro {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
     /* La sección ocupa toda la altura disponible */
     width: 100%;
     /* La sección ocupa toda la pantalla del usuario */
     background-color: #DBD3D0;
-    min-height: 92vh
 }
 
 /* Estilo de los campos y etiquetas */
 .espacio_registro {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+    justify-content: left;
+    width: 30rem;
+    margin-bottom: 1.5rem;
 }
 
 .control-label {
@@ -30,7 +28,7 @@
 }
 
 .form-control {
-    width: 50%;
+    width: 30rem;
     /* El campo toma el 50% del ancho disponible */
     padding: 10px;
 }
@@ -45,26 +43,23 @@
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #0056b3;
-}
+    .btn:hover {
+        background-color: #0056b3;
+    }
 
 .btn-cancelar {
     background-color: #ccc;
     color: #333;
 }
 
-.btn-cancelar:hover {
-    background-color: #999;
-}
+    .btn-cancelar:hover {
+        background-color: #999;
+    }
 
 a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
 
 .custom-space {
     color: #6768AB;

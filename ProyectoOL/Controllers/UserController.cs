@@ -1,4 +1,5 @@
 ﻿using ProyectoOL.Dto;
+using ProyectoOL.Permissions;
 using ProyectoOL.Services;
 using ProyectoOL.Utilities;
 using System.Web.Mvc;
@@ -9,7 +10,7 @@ namespace ProyectoOL.Controllers
     [HandleError]
     public class UserController : Controller
     {
-        UserDto userLogin = new UserDto();
+        private UserDto userLogin = new UserDto();
 
         //GET: Register
         public ActionResult Register()
@@ -61,11 +62,13 @@ namespace ProyectoOL.Controllers
             string asunto = "Ingreso a Open Library";
             string mensaje = "Se ha ingresado a la aplicación";
             email.SendEmail(destino, asunto, mensaje, true);
-            FormsAuthentication.SetAuthCookie(userLogin.Nombre_Usuario, true);
+            FormsAuthentication.SetAuthCookie(userLogin.Nombre_Usuario, false);
+            Session["User"] = userLogin;
             return View("Dashboard", userLogin);
         }
 
         [Authorize]
+        [RolPermissions(true, false, false)]
         public ActionResult RegisterAdmin()
         {
             UserDto user = new UserDto(); 
@@ -73,6 +76,7 @@ namespace ProyectoOL.Controllers
         }
 
         [HttpPost]
+        [RolPermissions(true, false, false)]
         public ActionResult RegisterAdmin(UserDto user)
         {
             EmailUtility email = new EmailUtility();
@@ -93,6 +97,7 @@ namespace ProyectoOL.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();

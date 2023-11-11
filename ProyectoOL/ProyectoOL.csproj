@@ -133,13 +133,14 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrarianController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\BookDto.cs" />
-    <Compile Include="Dtos\TipoUsuario.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Permissions\RolPermissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\Models\AUDITORIA.cs">
@@ -188,12 +189,13 @@
     <Compile Include="Utilities\EncryptUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Books.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\FootStyle.css" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Libros.css" />
-    <Content Include="Content\Login.css" />
-    <Content Include="Content\Register.css" />
+    <Content Include="Content\LoginN.css" />
+    <Content Include="Content\RegisterN.css" />
     <Content Include="Content\Reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -227,6 +229,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Shared\Logo.ico" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -251,12 +254,12 @@
     <Content Include="Views\Shared\LoginLibrarian.cshtml" />
     <Content Include="Views\User\RegisterAdmin.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Update\uUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\cs\" />
     <Folder Include="Scripts\js\" />
-    <Folder Include="Views\Route\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
