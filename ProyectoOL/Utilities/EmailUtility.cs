@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
 
 namespace ProyectoOL.Utilities
@@ -26,9 +27,16 @@ namespace ProyectoOL.Utilities
 
         public void SendEmail(string destino, string asunto, string mensaje, bool esHtml)
         {
-            email = new MailMessage(User, destino, asunto, mensaje);
-            email.IsBodyHtml = esHtml;
-            cliente.Send(email);
+            try
+            {
+                email = new MailMessage(User, destino, asunto, mensaje);
+                email.IsBodyHtml = esHtml;
+                cliente.Send(email);
+            }catch(Exception ex)
+            {
+                string m = ex.Message;
+            }
+            
         }
     }
 }
