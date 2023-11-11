@@ -1,7 +1,6 @@
 ﻿using ProyectoOL.Dto;
 using ProyectoOL.Permissions;
 using ProyectoOL.Services;
-using ProyectoOL.Utilities;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -72,7 +71,6 @@ namespace ProyectoOL.Controllers
             UserDto userRegister = userService.CreateUser(user);
             if (userRegister.Id_Usuario != -1)
             {
-                
                 return RedirectToAction("RegisterAdmin", "User");
             }
             else
