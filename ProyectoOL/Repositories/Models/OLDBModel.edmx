@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OLDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OLDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AUDITORIA">
           <Key>
             <PropertyRef Name="ID_AUDITORIA" />
@@ -38,14 +38,13 @@
           </Key>
           <Property Name="ID_LIBRO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_LIBRO" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="AUTOR" Type="nvarchar" MaxLength="50" />
-          <Property Name="FECHA" Type="nvarchar" MaxLength="50" />
+          <Property Name="AUTOR" Type="nvarchar" MaxLength="100" />
+          <Property Name="FECHA" Type="nvarchar" MaxLength="11" />
           <Property Name="FK_GENERO" Type="smallint" />
           <Property Name="FK_ESTADO" Type="smallint" Nullable="false" />
           <Property Name="IMAGEN" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="PDF" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="SINOPSIS" Type="nvarchar" MaxLength="255" Nullable="false" />
-
         </EntityType>
         <EntityType Name="CAT_TIPO_DOCUMENTO">
           <Key>
@@ -215,7 +214,7 @@
           <Property Name="ID_ESTADO" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CAT_LIBRO" Relationship="Self.FK_CAT_LIBRO_CAT_ESTADO" FromRole="CAT_ESTADO" ToRole="CAT_LIBRO" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_CAT_ESTADO" FromRole="CAT_ESTADO" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_CAT_ESTADO" FromRole="CAT_ESTADO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="CAT_GENERO">
           <Key>
@@ -231,8 +230,8 @@
           </Key>
           <Property Name="ID_LIBRO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_LIBRO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AUTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FECHA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AUTOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="FK_GENERO" Type="Int16" />
           <Property Name="FK_ESTADO" Type="Int16" Nullable="false" />
           <Property Name="IMAGEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
@@ -247,7 +246,7 @@
           </Key>
           <Property Name="ID_TIPO_DOCUMENTO" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_CAT_TIPO_DOCUMENTO" FromRole="CAT_TIPO_DOCUMENTO" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_CAT_TIPO_DOCUMENTO" FromRole="CAT_TIPO_DOCUMENTO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="CAT_TIPO_USUARIO">
           <Key>
@@ -255,7 +254,7 @@
           </Key>
           <Property Name="ID_TIPO_USUARIO" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DESCRPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_CAT_TIPO_USUARIO" FromRole="CAT_TIPO_USUARIO" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_CAT_TIPO_USUARIO" FromRole="CAT_TIPO_USUARIO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="PANTALLA">
           <Key>
@@ -283,7 +282,7 @@
           <NavigationProperty Name="CAT_ESTADO" Relationship="Self.FK_USUARIO_CAT_ESTADO" FromRole="USUARIO" ToRole="CAT_ESTADO" />
           <NavigationProperty Name="CAT_TIPO_DOCUMENTO" Relationship="Self.FK_USUARIO_CAT_TIPO_DOCUMENTO" FromRole="USUARIO" ToRole="CAT_TIPO_DOCUMENTO" />
           <NavigationProperty Name="CAT_TIPO_USUARIO" Relationship="Self.FK_USUARIO_CAT_TIPO_USUARIO" FromRole="USUARIO" ToRole="CAT_TIPO_USUARIO" />
-          <NavigationProperty Name="PANTALLA" Relationship="Self.FK_PANTALLA_USUARIO" FromRole="USUARIO" ToRole="PANTALLA" />
+          <NavigationProperty Name="PANTALLAs" Relationship="Self.FK_PANTALLA_USUARIO" FromRole="USUARIO" ToRole="PANTALLA" />
         </EntityType>
         <Association Name="FK_CAT_LIBRO_CAT_ESTADO">
           <End Role="CAT_ESTADO" Type="Self.CAT_ESTADO" Multiplicity="1" />
@@ -358,21 +357,21 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OLDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AUDITORIA" EntityType="Self.AUDITORIA" />
+          <EntitySet Name="AUDITORIAs" EntityType="Self.AUDITORIA" />
           <EntitySet Name="CAT_ESTADO" EntityType="Self.CAT_ESTADO" />
           <EntitySet Name="CAT_GENERO" EntityType="Self.CAT_GENERO" />
           <EntitySet Name="CAT_LIBRO" EntityType="Self.CAT_LIBRO" />
           <EntitySet Name="CAT_TIPO_DOCUMENTO" EntityType="Self.CAT_TIPO_DOCUMENTO" />
           <EntitySet Name="CAT_TIPO_USUARIO" EntityType="Self.CAT_TIPO_USUARIO" />
-          <EntitySet Name="PANTALLA" EntityType="Self.PANTALLA" />
-          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="PANTALLAs" EntityType="Self.PANTALLA" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
           <AssociationSet Name="FK_CAT_LIBRO_CAT_ESTADO" Association="Self.FK_CAT_LIBRO_CAT_ESTADO">
             <End Role="CAT_ESTADO" EntitySet="CAT_ESTADO" />
             <End Role="CAT_LIBRO" EntitySet="CAT_LIBRO" />
           </AssociationSet>
           <AssociationSet Name="FK_USUARIO_CAT_ESTADO" Association="Self.FK_USUARIO_CAT_ESTADO">
             <End Role="CAT_ESTADO" EntitySet="CAT_ESTADO" />
-            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
           </AssociationSet>
           <AssociationSet Name="FK_CAT_LIBRO_CAT_GENERO" Association="Self.FK_CAT_LIBRO_CAT_GENERO">
             <End Role="CAT_GENERO" EntitySet="CAT_GENERO" />
@@ -380,15 +379,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_USUARIO_CAT_TIPO_DOCUMENTO" Association="Self.FK_USUARIO_CAT_TIPO_DOCUMENTO">
             <End Role="CAT_TIPO_DOCUMENTO" EntitySet="CAT_TIPO_DOCUMENTO" />
-            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
           </AssociationSet>
           <AssociationSet Name="FK_USUARIO_CAT_TIPO_USUARIO" Association="Self.FK_USUARIO_CAT_TIPO_USUARIO">
             <End Role="CAT_TIPO_USUARIO" EntitySet="CAT_TIPO_USUARIO" />
-            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
           </AssociationSet>
           <AssociationSet Name="FK_PANTALLA_USUARIO" Association="Self.FK_PANTALLA_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
-            <End Role="PANTALLA" EntitySet="PANTALLA" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="PANTALLA" EntitySet="PANTALLAs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -397,7 +396,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OLDBModelStoreContainer" CdmEntityContainer="OLDBEntities">
-          <EntitySetMapping Name="AUDITORIA">
+          <EntitySetMapping Name="AUDITORIAs">
             <EntityTypeMapping TypeName="OLDBModel.AUDITORIA">
               <MappingFragment StoreEntitySet="AUDITORIA">
                 <ScalarProperty Name="ID_AUDITORIA" ColumnName="ID_AUDITORIA" />
@@ -458,7 +457,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PANTALLA">
+          <EntitySetMapping Name="PANTALLAs">
             <EntityTypeMapping TypeName="OLDBModel.PANTALLA">
               <MappingFragment StoreEntitySet="PANTALLA">
                 <ScalarProperty Name="ID_PANTALLA" ColumnName="ID_PANTALLA" />
@@ -468,7 +467,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="USUARIO">
+          <EntitySetMapping Name="USUARIOs">
             <EntityTypeMapping TypeName="OLDBModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
@@ -497,7 +496,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
