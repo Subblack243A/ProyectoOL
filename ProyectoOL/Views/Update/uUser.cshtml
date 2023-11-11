@@ -16,7 +16,7 @@
             <div class="espacio_registro">
                 @Html.LabelFor(model => model.Nombre, "Nombre:", htmlAttributes: new { @class = "control-label custom-space" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = Model.Nombre, @required = "required" } })
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 @Html.LabelFor(model => model.Apellido, "Apellido:", htmlAttributes: new { @class = "control-label custom-space" })
                 <div class="col-md-10">
 
-                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control", placeholder = Model.Apellido, @required = "required" } })
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -40,16 +40,6 @@
                         new SelectListItem { Text = "CE", Value = "3" }
                     }, "Selecciona un tipo de documento", new { @class = "form-control", @required = "required" })
                     @Html.ValidationMessageFor(model => model.Tipo_Documento, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="espacio_registro">
-                @Html.LabelFor(model => model.Id_Usuario, "Numero de documento:", htmlAttributes: new { @class = "control-label custom-space" })
-                <div class="col-md-10">
-
-                    @Html.EditorFor(model => model.Id_Usuario, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = Model.Id_Usuario, id = "documento", oninput = "this.value = this.value.replace(/[^0-9]/g, ''); if (this.value === '0') this.value = '';", @required = "required" } })
-
-                    @Html.ValidationMessageFor(model => model.Id_Usuario, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -68,7 +58,7 @@
 
                 @Html.LabelFor(model => model.Correo_Electronico, "Correo electronico:", htmlAttributes: new { @class = "control-label custom-space" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Correo_Electronico, new { htmlAttributes = new { @class = "form-control", placeholder = Model.Correo_Electronico, @required = "required" } })
+                    @Html.EditorFor(model => model.Correo_Electronico, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
 
                     @Html.ValidationMessageFor(model => model.Correo_Electronico, "", new { @class = "text-danger" })
                 </div>
@@ -79,7 +69,7 @@
                 @Html.LabelFor(model => model.Nombre_Usuario, "Nombre de usuario:", htmlAttributes: new { @class = "control-label custom-space" })
                 <div class="col-md-10">
 
-                    @Html.EditorFor(model => model.Nombre_Usuario, new { htmlAttributes = new { @class = "form-control", placeholder = Model.Nombre_Usuario, @required = "required" } })
+                    @Html.EditorFor(model => model.Nombre_Usuario, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
 
                     @Html.ValidationMessageFor(model => model.Nombre_Usuario, "", new { @class = "text-danger" })
                 </div>
@@ -89,7 +79,7 @@
                 @Html.LabelFor(model => model.Contrasena, "Contraseña:", htmlAttributes: new { @class = "control-label custom-space" })
                 <div class="col-md-10">
 
-                    @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control", placeholder = "Escriba su contraseña Antigua o Nueva", @required="required" } })
+                    @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control", type="password", placeholder = "Escriba su contraseña Antigua o Nueva", @required="required" } })
                     @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
                     <span></span>
                 </div>

@@ -20,7 +20,7 @@ namespace ProyectoOL.Dto
         public string Apellido { get; set; } = string.Empty;
 
         public string Correo_Electronico { get; set; } = string.Empty;
-        [MinLength(8)]
+        [Required, MinLength(8)]
         public string Contrasena { get; set; } = string.Empty;
 
         public string Message {  get; set; } = string.Empty;
