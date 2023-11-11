@@ -10,9 +10,10 @@
             <h3 class="welcome-title">Bienvenido Administrador</h3>
             <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
             <center>
-                    @Html.ActionLink("Registrar Usuarios", "RegisterAdmin", "User", new { @class = "btn btn-primary" })
-                    <a href="@Url.Action("Books", "Librarian", new { area = "" })" class="btn btn-primary">Registrar Libros</a>
-                    <a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a>
+                @Html.ActionLink("Registrar Usuarios", "RegisterAdmin", "User", new { @class = "btn btn-primary" })
+                <a href="@Url.Action("Books", "Librarian", new { area = "" })" class="btn btn-primary">Registrar Libros</a>
+                <a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a>
+                <a href="@Url.Action("uUser", "Update", new { area = "" })" class="btn btn-primary">Actualizar Usuario</a>
             </center>
         }
         else if (Model.Tipo_Usuario == 3)
@@ -22,12 +23,16 @@
             <center>
                 <a href="@Url.Action("Books", "Librarian", new { area = "" })" class="btn btn-primary">Registrar Libros</a>
                 <a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a>
+                <a href="@Url.Action("uUser", "Update", new { area = "" })" class="btn btn-primary">Actualizar Usuario</a>
             </center>
         }
         else
         {
             <h3 class="welcome-title">Bienvenido Usuario</h3>
             <h4 class="welcome-name">@Html.DisplayFor(model => model.Nombre)</h4>
-            <center><a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a></center>
+            <center>
+                <a href="@Url.Action("Index", "Client", new { area = "" })" class="btn btn-primary">Ver Libros</a>
+                <a href="@Url.Action("uUser", "Update", new { area = "" })" class="btn btn-primary">Actualizar Usuario</a>
+            </center>
         }
 </div>

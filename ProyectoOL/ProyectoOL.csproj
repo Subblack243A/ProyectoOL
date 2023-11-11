@@ -133,6 +133,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrarianController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\BookDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,7 +194,7 @@
     <Content Include="Content\FootStyle.css" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Libros.css" />
-    <Content Include="Content\Login.css" />
+    <Content Include="Content\LoginN.css" />
     <Content Include="Content\RegisterN.css" />
     <Content Include="Content\Reset.css" />
     <Content Include="favicon.ico" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Shared\LoginLibrarian.cshtml" />
     <Content Include="Views\User\RegisterAdmin.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Update\uUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
