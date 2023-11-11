@@ -8,10 +8,13 @@ namespace ProyectoOL.Services
     {
         public UserDto CreateUser(UserDto user)
         {
-            EncryptUtility encryptUtility = new EncryptUtility();
-            user.Contrasena = encryptUtility.Encrypt(user.Contrasena);
-            user.KeySafe = encryptUtility.GetKeySafe();
-            user.Iv = encryptUtility.GetIv();            
+            if (!user.Message.Equals("1"))
+            {
+                EncryptUtility encryptUtility = new EncryptUtility();
+                user.Contrasena = encryptUtility.Encrypt(user.Contrasena);
+                user.KeySafe = encryptUtility.GetKeySafe();
+                user.Iv = encryptUtility.GetIv();
+            }
             UserRepository userRepository = new UserRepository();
             int result = userRepository.CreateUser(user);
 

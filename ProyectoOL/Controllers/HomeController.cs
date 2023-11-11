@@ -9,6 +9,7 @@ namespace ProyectoOL.Controllers
         public ActionResult Index()
         {
             FormsAuthentication.SignOut();
+            Session["User"] = null;
             return View();
         }
 
