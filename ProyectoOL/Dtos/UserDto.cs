@@ -1,6 +1,4 @@
-﻿
-using ProyectoOL.Dtos;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoOL.Dto
 {
